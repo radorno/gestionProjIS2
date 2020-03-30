@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.is2.web.app.models.Usuarios;
+
 import com.is2.web.app.models.dao.IUsuarioDao;
 import com.is2.web.app.models.entity.Usuario;
 
@@ -38,11 +39,11 @@ public class AdminController {
 			return "administrador/crearUsuarios";
 		}
 		
-		@PostMapping({"/administrativo/crearUsuarios"})       
+		@RequestMapping(value="/administrativo/crearUsuarios", method=RequestMethod.POST)       
 		public String guardarUsuario(Usuario usuario){
 
 			usuarioDao.save(usuario);
-			return "redirect:administrador/crearUsuarios";
+			return "administrador/gestionUsuario";
 		}
 		
 		
