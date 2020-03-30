@@ -21,6 +21,12 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 		// TODO Auto-generated method stub
 		return em.createQuery("from Usuario").getResultList();
 	}
+	@Override
+	@Transactional
+	public void save(Usuario usuario) {
+		em.persist(usuario);
+		
+	}
 
 
 

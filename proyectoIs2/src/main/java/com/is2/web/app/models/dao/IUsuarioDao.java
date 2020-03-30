@@ -8,4 +8,6 @@ public interface IUsuarioDao {
 
 	public List<Usuario> findAll();
 	
+	public void save(Usuario usuario);
+	
 }
