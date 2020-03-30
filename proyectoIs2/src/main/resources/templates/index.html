@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>Insert title here</title>
+<title>Gestion de Proyectos</title>
+<link rel="stylesheet" href="/css/estilo.css">
 </head>
 <body>
+    <link rel="stylesheet" href="/css/estilo.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -20,28 +22,31 @@
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 		crossorigin="anonymous">
-	<div class="page-header">
-		<h1>
-			Gestion de Proyectos <small>Bienvenido </small>
-		</h1>
+	<div class="contenedor">
+		<div class="wrap">
+			<form rol="form" [formGroup]="miFormulario" >
+				<div class="form-group ">
+					<label for="exampleInputEmail1">Usuario:</label>
+						<div class="">
+							 <input placeholder="Ingrese Usuario" [class.is-invalid]="miFormulario.get('username').touched && miFormulario.get('username').invalid"
+							  type="text" class="form-control" formControlName="username">
+						</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Password:</label> 
+						<div class="">
+							<input placeholder="Ingrese Contraseña" [class.is-invalid]="miFormulario.get('userpassword').touched && miFormulario.get('userpassword').invalid"
+						 	type="password" class="form-control" formControlName="userpassword">
+						</div>
+				</div>
+				<div class="form-group">
+					<div class="">
+						<button  onclick="location.href= '/app/home'" type="button" class="btn btn-outline-primary">Ingresar</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-	<div class="container">
-
-		<form rol="form" [formGroup]="miFormulario ">
-			<div class="form-group">
-				<label for="exampleInputEmail1">Usuario: </label> <input
-					placeholder="Ingrese Usuario"
-					[class.is-invalid]="miFormulario.get('username').touched && miFormulario.get('username').invalid"
-					type="text" class="form-control" formControlName="username">
-			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Password: </label> <input
-					placeholder="Ingrese Contraseña"
-					[class.is-invalid]="miFormulario.get('userpassword').touched && miFormulario.get('userpassword').invalid"
-					type="password" class="form-control" formControlName="userpassword"><br />
-			</div>
-
-			<button  onclick="location.href= '/app/home'" type="button" class="btn btn-outline-primary">Ingresar</button>
-		</form>
+	
 </body>
 </html>

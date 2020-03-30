@@ -2,16 +2,28 @@ package com.is2.web.app.models;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Usuarios {
+	@NotEmpty
+	private String id;
+	@NotEmpty
 	private String nombre;
+	@NotEmpty
 	private String apellido;
+	@NotEmpty
 	private String userCode;
+	@NotEmpty
 	private String password;
+	@NotEmpty
+	private String IdRol;
+	@NotEmpty
 	private Date fechaCreacion;
 	
 	
 	
-	public Usuarios(String nombre, String apellido, String userCode, String password) {
+	public Usuarios(String id,String nombre, String apellido, String userCode, String password) {
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.userCode = userCode;
@@ -20,6 +32,23 @@ public class Usuarios {
 	}
 	
 	
+	
+	public String getIdRol() {
+		return IdRol;
+	}
+
+	public void setIdRol(String idRol) {
+		IdRol = idRol;
+	}
+
+
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}

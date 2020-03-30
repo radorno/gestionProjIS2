@@ -12,5 +12,7 @@ public class IndexControllers {
 	public String index(){
 		return "index";
 	}
+	
+	
 
 }
