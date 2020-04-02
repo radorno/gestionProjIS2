@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="usuarios")
@@ -19,11 +20,17 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@NotEmpty
 	private String nombre;
+	@NotEmpty
 	private String apellido;
+	@NotEmpty
 	private String userCode;
+	@NotEmpty
 	private String password;
-	private String IdRol;
+	
+	private Long IdRol;
+	
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
 	
@@ -34,23 +41,35 @@ public class Usuario implements Serializable{
 		
 	}
 	
+    
 	
-	public String getIdRol() {
+	public Usuario() {
+		super();
+	}
+
+
+
+	public Long getIdRol() {
 		return IdRol;
 	}
 
-	public void setIdRol(String IdRol) {
-		IdRol = IdRol;
+	public void setIdRol(Long IdRol) {
+		this.IdRol = IdRol;
 	}
 
+    
 
-
+	
 	public long getId() {
 		return id;
 	}
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}

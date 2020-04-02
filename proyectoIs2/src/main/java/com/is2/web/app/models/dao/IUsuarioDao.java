@@ -10,4 +10,6 @@ public interface IUsuarioDao {
 	
 	public void save(Usuario usuario);
 	
+	public Usuario findOne(long id);
+	
 }

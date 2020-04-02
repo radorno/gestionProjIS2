@@ -1,0 +1,60 @@
+<head>
+ 	<title>Creacion de Tareas</title> 
+ 	<link rel="stylesheet" href="/css/imagen.css">
+</head>
+<body >
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1>Crear Tarea</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img th:src="@{/img/user.png}" width="30" height="30">
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/desarrollo/crearTarea}"  th:object = ${tarea} method="post">
+		 <center>
+		 <font color="#145DC7">
+		 <p>Id : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="number" th:field= "*{id}" name="id"maxlength="12"/> </p> 
+		 <p>version : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		 <input type="text"  th:field= "*{version}" name="version"/maxlength="12"> </p> 
+		 <p>Id Tarea Padre : &nbsp;&nbsp;&nbsp;  
+		 <input type="number" th:field= "*{idTareaPadre}" name="id_tarea_padre"/> </p> 
+		 <p>Prioridad : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{prioridad}" name="prioridad"maxlength="12"/> </p> 
+		 <p>Estado :&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select type="text"  name="estado" th:field= "*{estado}">
+			<option value="">                       </option>
+			<option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+		 </select>
+		 <p>Descripcion:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p>
+		 <p>Observacion : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{observacion}" name="id"/> </p> 
+		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Guardar"> </p> 
+		 </center>
+		 </font>
+		 <input type="hidden" th:field="*{id}"> 
+		</form>
+	  </td>
+	 </td>
+	</table>
+</body>

@@ -10,21 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="proyectos")
 public class Proyecto implements Serializable{
 		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private long idProyecto;
 		private long idRol;
 		private long idAdmin;
 		private long idUsuario;
 		private long idFase;
 		private String descripcion;
-		private int estado;
+		private String estado;
 		@Temporal(TemporalType.DATE)
+		@DateTimeFormat(pattern="yyyy-mm-dd")
 		private Date fechaInicio;
 		@Temporal(TemporalType.DATE)
+		@DateTimeFormat(pattern="yyyy-mm-dd")
 		private Date fechaFin;
 		public long getIdProyecto() {
 			return idProyecto;
@@ -62,10 +66,10 @@ public class Proyecto implements Serializable{
 		public void setDescripcion(String descripcion) {
 			this.descripcion = descripcion;
 		}
-		public int getEstado() {
+		public String getEstado() {
 			return estado;
 		}
-		public void setEstado(int estado) {
+		public void setEstado(String estado) {
 			this.estado = estado;
 		}
 		public Date getFechaInicio() {

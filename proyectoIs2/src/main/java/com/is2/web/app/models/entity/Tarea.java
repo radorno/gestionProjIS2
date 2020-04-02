@@ -1,26 +1,28 @@
 package com.is2.web.app.models.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="tareas")
-public class Tarea {
+public class Tarea implements Serializable{
 
 	@Id
-	private long Id;
+	private long id;
 	private String version;
-	private String priodidad;
+	private String prioridad;
 	private String estado;
 	private String descripcion;
 	private String observacion;
 	private long idTareaPadre;
 	public long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getVersion() {
 		return version;
@@ -28,11 +30,11 @@ public class Tarea {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	public String getPriodidad() {
-		return priodidad;
+	public String getPrioridad() {
+		return prioridad;
 	}
-	public void setPriodidad(String priodidad) {
-		this.priodidad = priodidad;
+	public void setPrioridad(String prioridad) {
+		this.prioridad = prioridad;
 	}
 	public String getEstado() {
 		return estado;

@@ -1,12 +1,12 @@
 <head>
- 	<title>Modificacion Rol</title> 
- 	<link rel="stylesheet" href="/css/imagen.css">
+ 	<title>Modificacion de Tarea</title> 
+ 	 <link rel="stylesheet" href="/css/imagen.css">
 </head>
-<body>
+<body >
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Modificar Rol</h1> 
+	<h1>Modificar Tarea</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -14,7 +14,7 @@
        <td width="5000%">
 		<blockquote>
 		<center>
-		<p> <img th:src="@{/img/user.png}" width="30" height="30">
+		<p><img th:src="@{/img/user.png}" width="30" height="30">
 		<font color="#145DC7">
 		<b>Favor complete los campos</b> </p> 
 		</font>
@@ -25,11 +25,12 @@
      </tr>
 	 <tr>
 	  <td>
-		<form action='#'  th:action="@{/app/administrativo/modificarRoles}" th:number = ${rol} method="post">
+		<form action='#'  th:action="@{/app/desarrollo/modificarTarea}" th:number = ${tarea} method="post">
 		 <center>
 		 <font color="#145DC7">
-			<p>Buscar por ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    <input  type="number" th:field= "*{rol.id}" name="id" size="18" />
+			<p>Buscar por Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="number" th:field= "*{tarea.id}" name="id" size="18"/>
 			</p>
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

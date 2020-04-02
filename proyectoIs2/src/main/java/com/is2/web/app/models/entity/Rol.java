@@ -9,16 +9,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="roles")
-public class Rol {
+public class Rol implements Serializable{
 
 	@Id
-	private long Id;
+	private long id;
 	private String nombreRol;
 	public long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(long id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getNombreRol() {
 		return nombreRol;
