@@ -112,7 +112,7 @@ public class DesarrolladorController {
 	public String guardarTarea(Tarea tarea){
 
 		tareaDao.save(tarea);
-		return "desarrollador/gestionProyecto";
+		return "desarrollador/gestionTarea";
 	}
 	
 	

@@ -1,9 +1,11 @@
 package com.is2.web.app.models.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,33 +14,66 @@ import com.is2.web.app.models.entity.Usuario;
 
 @Repository
 public class UsuarioDaoImpl implements IUsuarioDao {
-    @PersistenceContext
+	@PersistenceContext
 	private EntityManager em;
+
 	@SuppressWarnings("inchecked")
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
 	public List<Usuario> findAll() {
 		// TODO Auto-generated method stub
 		return em.createQuery("from Usuario").getResultList();
 	}
+
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
-		if(usuario.getId()!=0) {
-			
+		if (usuario.getId() != 0) {
+
 			em.merge(usuario);
-		}else {
-		
-		em.persist(usuario);
+		} else {
+
+			em.persist(usuario);
 		}
 	}
+
 	@Override
 	public Usuario findOne(long id) {
 		// TODO Auto-generated method stub
 		return em.find(Usuario.class, id);
-		
+
 	}
 
+	@Override
+	public boolean validarUser(Usuario usuario) {
+		// TODO Auto-generated method stub
+		List<Usuario> user;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM USUARIOS WHERE USER_CODE = :user AND PASSWORD = :pass ",
+				Usuario.class);
+		nativeQuery.setParameter("user", usuario.getUserCode());
+		nativeQuery.setParameter("pass", usuario.getPassword());
+		user = nativeQuery.getResultList();
 
+		if (!user.isEmpty()) {
+			
+			if (user.get(0).getIdRol() == 1) {
+
+				return true;
+				
+			} else {
+				
+				return false;
+
+			}
+
+		} else {
+			
+			return false;
+
+		}
+
+		
+
+	}
 
 }

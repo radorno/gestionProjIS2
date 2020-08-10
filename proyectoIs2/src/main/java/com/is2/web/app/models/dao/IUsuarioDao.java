@@ -12,4 +12,5 @@ public interface IUsuarioDao {
 	
 	public Usuario findOne(long id);
 	
+	public boolean validarUser(Usuario usuario);
 }
