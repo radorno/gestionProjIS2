@@ -59,20 +59,39 @@ public class AdminController {
 				return "administrador/crearUsuarios";
 			}
 			
+			
+			if( usuarioDao.findUser(usuario.getUserCode()) != null ) {
+				
+				if (usuario.getId() == 0) {
+					model.addAttribute("error","error usuario ya existe dentro de la base de datos" );
+					return "administrador/crearUsuarios";
+					} else {
+						usuarioDao.save(usuario);
+						return  "administrador/gestionRoles";
+					}
+			}else {
+			
 			usuarioDao.save(usuario);
 			return "administrador/gestionUsuario";
+			}
 		}
 		
 		@RequestMapping(value="/administrativo/modificarUsuario", method=RequestMethod.POST)
-		public String modificarUsuario(Usuario usuarioNuevo, Map<String, Object> model) {
+		public String modificarUsuario(Usuario usuarioNuevo, Map<String, Object> model, Model models) {
 			
 			Usuario usuario = null;
-			usuario = usuarioDao.findOne(usuarioNuevo.getId());
+			usuario = usuarioDao.findUser(usuarioNuevo.getUserCode());
+			if(usuario == null) {
+				models.addAttribute("error","error Usuario no existe" );
+				return "administrador/modificarUsuario";
+			}else {
+			
 			model.put("roles",rolDao.findAll());
 			model.put("usuario", usuario);
 			model.put("error","");
 			
 			return "administrador/crearUsuarios";
+			}
 		}
 		
 		@GetMapping({"/administrativo/modificarUsuario"})       
@@ -98,27 +117,54 @@ public class AdminController {
 		public String crearRoles(Map<String, Object> model){
 			Rol rol = new Rol();
 			model.put("rol",rol);
+			model.put("error","");
+
 			return "administrador/crearRoles";			
 			
 		}
 		
 		@RequestMapping(value="/administrativo/crearRoles", method=RequestMethod.POST)       
-		public String guardarRoles(Rol rol){
-
-			rolDao.save(rol);
-			return "administrador/gestionRoles";
+		public String guardarRoles(@Valid Rol rol, BindingResult result, Model model){
+			
+			if(result.hasErrors()) {
+				model.addAttribute("error","error volver a cargar campos" );
+				return "administrador/crearRoles";
+			}
+			
+			if( rolDao.findRol(rol.getNombreRol()) != null ) {
+				if (rol.getId() == 0) {
+				model.addAttribute("error","error Rol ya existe dentro de la base de datos" );
+				return "administrador/crearRoles";
+				} else {
+					rolDao.save(rol);
+					return  "administrador/gestionRoles";
+				}
+			}else {
+			
+				rolDao.save(rol);
+				return "administrador/gestionRoles";
+			}
+			
+			
 		}
 		
 		
 		
 		@RequestMapping(value="/administrativo/modificarRoles", method=RequestMethod.POST)
-		public String modificarRoles(Rol rolNuevo, Map<String, Object> model) {
-			
+		public String modificarRoles(Rol rolNuevo, Map<String, Object> model,Model models) {
 			Rol rol = null;
-			rol = rolDao.findOne(rolNuevo.getId());
+			rol = rolDao.findRol(rolNuevo.getNombreRol());
+			if(rol == null) {
+				models.addAttribute("error","error Rol no existe" );
+				return "administrador/modificarRoles";
+			}else {
+			
 			model.put("rol", rol);
+			model.put("error","");
 			
 			return "administrador/crearRoles";
+			}
+			
 		}
 		
 		@GetMapping({"/administrativo/modificarRoles"})       

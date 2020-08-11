@@ -6,7 +6,7 @@
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Modificar Proyecto</h1> 
+	<h1 th:text="${error}">Modificar Proyecto</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -28,12 +28,12 @@
 		<form  action='#'  th:action="@{/app/desarrollo/modificarProyecto}" th:number = ${proyecto} method="post">
 		 <center>
 		 <font color="#145DC7">
-			<p>Buscar por ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<p>Buscar por Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input  type="number" th:field= "*{proyecto.idProyecto}" name="id" size="18" />
+			<input  type="text" th:field= "*{proyecto.codigoProyecto}" name="codigoProyecto" size="18" />
 			</p>
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/desarrollo/gestionProyecto'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Buscar"> </p> 
 		 </center>
 		 </font>

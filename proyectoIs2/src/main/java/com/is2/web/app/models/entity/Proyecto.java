@@ -17,11 +17,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="proyectos")
 public class Proyecto implements Serializable{
 		@Id
-		private long idProyecto;
-		private long idRol;
-		private long idAdmin;
-		private long idUsuario;
-		private long idFase;
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		private long id;
+		private String codigoProyecto;
+		private String Admin;
+		private long Fase;
 		private String descripcion;
 		private String estado;
 		@Temporal(TemporalType.DATE)
@@ -30,35 +30,35 @@ public class Proyecto implements Serializable{
 		@Temporal(TemporalType.DATE)
 		@DateTimeFormat(pattern="yyyy-mm-dd")
 		private Date fechaFin;
-		public long getIdProyecto() {
-			return idProyecto;
+
+		public String getCodigoProyecto() {
+			return codigoProyecto;
 		}
-		public void setIdProyecto(long idProyecto) {
-			this.idProyecto = idProyecto;
+		public void setCodigoProyecto(String codigoProyecto) {
+			this.codigoProyecto = codigoProyecto;
 		}
-		public long getIdRol() {
-			return idRol;
+		public long getId() {
+			return id;
 		}
-		public void setIdRol(long idRol) {
-			this.idRol = idRol;
+		public void setId(long id) {
+			this.id = id;
 		}
-		public long getIdAdmin() {
-			return idAdmin;
+
+		
+		public String getAdmin() {
+			return Admin;
 		}
-		public void setIdAdmin(long idAdmin) {
-			this.idAdmin = idAdmin;
+	
+		public long getFase() {
+			return Fase;
 		}
-		public long getIdUsuario() {
-			return idUsuario;
+	
+		public void setAdmin(String admin) {
+			Admin = admin;
 		}
-		public void setIdUsuario(long idUsuario) {
-			this.idUsuario = idUsuario;
-		}
-		public long getIdFase() {
-			return idFase;
-		}
-		public void setIdFase(long idFase) {
-			this.idFase = idFase;
+	
+		public void setFase(long fase) {
+			Fase = fase;
 		}
 		public String getDescripcion() {
 			return descripcion;

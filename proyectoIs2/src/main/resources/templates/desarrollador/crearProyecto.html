@@ -6,7 +6,7 @@
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Crear Proyecto</h1> 
+	<h1 th:text="${error}">Crear Proyecto</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -28,16 +28,12 @@
 		<form th:action="@{/app/desarrollo/crearProyecto}"  th:object = ${proyecto} method="post">
 		 <center>
 		 <font color="#145DC7">
-		 <p>Id Proyecto : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="number"  th:field= "*{idProyecto}" name="idProyecto"maxlength="12"/> </p> 
-		 <p>Id Rol : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		 <input type="number"  th:field= "*{idRol}" name="idRol"/maxlength="12"> </p> 
-		 <p>Id Admin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="number"  th:field= "*{idAdmin}" name="idAdmin"/maxlength="12"/> </p> 
-		 <p>Id Usuario: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="number"  th:field= "*{idUsuario}" name="idUsuario"/maxlength="12"/> </p> 
-		 <p>Id Fase : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="number"  th:field= "*{idFase}" name="prioridad"/maxlength="12"/> </p> 
+		 <p>Codigo Proyecto : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text"  th:field= "*{codigoProyecto}" name="codigoProyecto"maxlength="12"/> </p> 
+		 <p>Admin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text"  th:field= "*{Admin}" name="Admin"/maxlength="12"/> </p> 
+		 <p>Fase : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="number"  th:field= "*{Fase}" name="Fase"/maxlength="12"/> </p> 
 		 <p>Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p> 
 		 <p>Estado :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,11 +48,11 @@
 		 <p>Fecha Fin : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 		 <input type="Date"   th:field= "*{fechaFin}" name="fechaFin"/> </p> 
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/desarrollo/gestionProyecto'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Guardar"> </p> 
 		 </center>
 		 </font>
-		<input type="hidden" th:field="*{idProyecto}"> 
+		<input type="hidden" th:field="*{id}"> 
 		</form>
 	  </td>
 	 </td>

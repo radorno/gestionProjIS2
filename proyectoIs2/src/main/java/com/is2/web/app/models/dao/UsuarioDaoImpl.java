@@ -55,25 +55,37 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 		user = nativeQuery.getResultList();
 
 		if (!user.isEmpty()) {
-			
-			if (user.get(0).getIdRol() == 1) {
+
+			if (user.get(0).getNombreRol().equals("Administrador")) {
 
 				return true;
-				
+
 			} else {
-				
+
 				return false;
 
 			}
 
 		} else {
-			
+
 			return false;
 
 		}
 
-		
+	}
 
+	@Override
+	public Usuario findUser(String userCode) {
+		List<Usuario> user;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM USUARIOS WHERE USER_CODE = :user", Usuario.class);
+		nativeQuery.setParameter("user", userCode);
+		user = nativeQuery.getResultList();
+		if (!user.isEmpty()) {
+			return user.get(0);
+		} else {
+
+			return null;
+		}
 	}
 
 }

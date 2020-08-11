@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class ProjectoDaoImpl implements IProyectoDao{
 	@Transactional
 	public void save(Proyecto proyecto) {
 		// TODO Auto-generated method stub
-		 if(proyecto.getIdProyecto()!=0) {
+		 if(proyecto.getId()!=0) {
 				
 				em.merge(proyecto);
 			}else {
@@ -41,6 +42,21 @@ public class ProjectoDaoImpl implements IProyectoDao{
 	public Proyecto findOne(long idProyecto) {
 		// TODO Auto-generated method stub
 		return em.find(Proyecto.class, idProyecto);
+	}
+
+	@Override
+	public Proyecto findProyecto(String codigoProyecto) {
+		List<Proyecto> proyecto;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM PROYECTOS WHERE CODIGO_PROYECTO = :codigo", Proyecto.class);
+		nativeQuery.setParameter("codigo", codigoProyecto);
+		proyecto = nativeQuery.getResultList();
+		if (!proyecto.isEmpty()) {
+			return proyecto.get(0);
+		} else {
+
+			return null;
+		}
+		
 	}
 	
 	

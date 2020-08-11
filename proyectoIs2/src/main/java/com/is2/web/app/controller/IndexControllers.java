@@ -35,7 +35,7 @@ public class IndexControllers {
 
 		if (usuarioDao.validarUser(usuario)) {
 			
-			return "administrador/gestionUsuario";
+			return "administrador/home";
 			
 		} else {
 			model.addAttribute("error", "Usuario invalido");

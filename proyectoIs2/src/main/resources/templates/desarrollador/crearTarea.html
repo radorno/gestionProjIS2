@@ -6,7 +6,7 @@
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Crear Tarea</h1> 
+	<h1 th:text="${error}">Crear Tarea</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -28,12 +28,10 @@
 		<form th:action="@{/app/desarrollo/crearTarea}"  th:object = ${tarea} method="post">
 		 <center>
 		 <font color="#145DC7">
-		 <p>Id : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="number" th:field= "*{id}" name="id"maxlength="12"/> </p> 
+		 <p>CodigoTarea : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{codigoTarea}" name="codigoTarea"maxlength="12"/> </p> 
 		 <p>version : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		 <input type="text"  th:field= "*{version}" name="version"/maxlength="12"> </p> 
-		 <p>Id Tarea Padre : &nbsp;&nbsp;&nbsp;  
-		 <input type="number" th:field= "*{idTareaPadre}" name="id_tarea_padre"/> </p> 
 		 <p>Prioridad : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="text" th:field= "*{prioridad}" name="prioridad"maxlength="12"/> </p> 
 		 <p>Estado :&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,14 +39,14 @@
 			<option value="">                       </option>
 			<option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 			<option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-			<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>		
 		 </select>
 		 <p>Descripcion:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p>
 		 <p>Observacion : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="text" th:field= "*{observacion}" name="id"/> </p> 
+		 <input type="text" th:field= "*{observacion}" name="obs"/> </p> 
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Guardar"> </p> 
 		 </center>
 		 </font>

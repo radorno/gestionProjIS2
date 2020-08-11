@@ -12,5 +12,7 @@ public interface IProyectoDao {
 	public void save(Proyecto proyecto);
 	
 	public Proyecto findOne(long id);
+	
+	public Proyecto findProyecto(String codigoProyecto);
 
 }

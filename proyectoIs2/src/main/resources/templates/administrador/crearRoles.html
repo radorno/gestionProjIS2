@@ -8,7 +8,7 @@
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Crear Rol</h1> 
+	<h1 th:text="${error}" >Crear Rol</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -30,18 +30,19 @@
 		<form th:action="@{/app/administrativo/crearRoles}" th:object = ${rol} method="post">
 		 <center>
 		 <font color="#145DC7">
-			<p>ID Rol :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 	<input type="number" th:field= "*{id}" name="id" size="18" />
-			<p>Nombre Rol :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" th:field= "*{nombreRol}" name="nombreRol" size="18" />
+			<p>Nombre Rol :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 	<input type="text" th:field= "*{nombreRol}" name="nombreRol" size="18" />
+			<p>Descripcion :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" th:field= "*{descripcion}" name="descripcion" size="18" />
 			</p>
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/administrativo/gestionRoles'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Guardar"></p> 
 		 </center>
 		 </font>
-		<input type="hidden" th:field="*{id}"> 
+		<input type="hidden" th:field="*{id}">
 		</form>
+		 
 	  </td>
 	 </td>
 	</table>

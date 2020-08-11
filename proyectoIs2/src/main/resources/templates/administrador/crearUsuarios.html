@@ -40,9 +40,9 @@
 		 <input type="text" th:field= "*{userCode}" name="code"/maxlength="20"/> </p> 
 		 <p class="form-text text-danger" th:if="${#fields.hasErrors('userCode')}" th:erros="*{userCode}"  ></p>
 		 <p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <select  name="Roles" th:field= "*{IdRol}">
+		 <select  name="Roles" th:field= "*{nombreRol}">
 			<option value=""></option>
-			<option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.id}" ></option>
+			<option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
 		 </select>
 		 <p>Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		 <input type="password" th:field= "*{password}" name="pass"/> </p> 
@@ -53,6 +53,7 @@
 		 </font>
 		<input type="hidden" th:field="*{id}"> 
 		</form>
+		<input type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
 	  </td>
 	 </td>
 	</table>

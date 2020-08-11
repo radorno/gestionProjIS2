@@ -29,7 +29,7 @@ public class Usuario implements Serializable{
 	@NotEmpty
 	private String password;
 	
-	private Long IdRol;
+	private String nombreRol;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
@@ -46,20 +46,19 @@ public class Usuario implements Serializable{
 	public Usuario() {
 		super();
 	}
-
-
-
-	public Long getIdRol() {
-		return IdRol;
-	}
-
-	public void setIdRol(Long IdRol) {
-		this.IdRol = IdRol;
-	}
-
-    
-
 	
+	public String getNombreRol() {
+		return nombreRol;
+	}
+
+
+
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
+	}
+
+
+
 	public long getId() {
 		return id;
 	}

@@ -13,4 +13,6 @@ public interface IUsuarioDao {
 	public Usuario findOne(long id);
 	
 	public boolean validarUser(Usuario usuario);
+	
+	public Usuario findUser(String userCode);
 }

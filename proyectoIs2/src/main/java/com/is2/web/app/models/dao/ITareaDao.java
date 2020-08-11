@@ -14,4 +14,5 @@ public interface ITareaDao {
 	
 	public Tarea findOne(long id);
 
+	public Tarea findTarea(String codigoTarea);
 }

@@ -6,7 +6,7 @@
 	<center> 
 	<br>
 	<font color="#145DC7">
-	<h1>Modificar Rol</h1> 
+	<h1  th:text="${error}">Modificar Rol</h1> 
 	</font>
 	</center> <br>
 	<table border ="3" align="center" width="25%" >
@@ -28,11 +28,11 @@
 		<form action='#'  th:action="@{/app/administrativo/modificarRoles}" th:number = ${rol} method="post">
 		 <center>
 		 <font color="#145DC7">
-			<p>Buscar por ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    <input  type="number" th:field= "*{rol.id}" name="id" size="18" />
+			<p>Buscar por Nombre de Rol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input  type="text" th:field= "*{rol.nombreRol}" name="id" size="18" />
 			</p>
 		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/administrativo/gestionRoles'" value="Atras" />  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <input type="submit" value="Buscar"> </p> 
 		 </center>
 		 </font>

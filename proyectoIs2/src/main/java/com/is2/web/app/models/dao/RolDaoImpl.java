@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,20 @@ public class RolDaoImpl implements IRolDao  {
 	public Rol findOne(long id) {
 		// TODO Auto-generated method stub
 		return em.find(Rol.class, id);
+	}
+
+	@Override
+	public Rol findRol(String nombreRol) {
+		List<Rol> rol;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM ROLES WHERE NOMBRE_ROL = :name", Rol.class);
+		nativeQuery.setParameter("name", nombreRol);
+		rol = nativeQuery.getResultList();
+		if (!rol.isEmpty()) {
+			return rol.get(0);
+		} else {
+
+			return null;
+		}
 	}
 	
 	
