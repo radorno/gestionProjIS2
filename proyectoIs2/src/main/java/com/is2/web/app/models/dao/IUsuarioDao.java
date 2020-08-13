@@ -15,4 +15,6 @@ public interface IUsuarioDao {
 	public boolean validarUser(Usuario usuario);
 	
 	public Usuario findUser(String userCode);
+	
+	public void updateRol(Usuario usuario);
 }

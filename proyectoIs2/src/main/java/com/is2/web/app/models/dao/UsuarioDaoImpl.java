@@ -88,4 +88,20 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 		}
 	}
 
+	@Override
+	public void updateRol(Usuario usuario) {
+		// TODO Auto-generated method stub
+		em.getTransaction().begin();
+		Usuario usuarioDTO = em.find(Usuario.class, usuario.getId());
+      
+	
+		  usuarioDTO.setNombreRol(usuario.getNombreRol());;
+	     
+		  em.getTransaction().commit();
+		  em.close();
+		
+	}
+
+	
+
 }

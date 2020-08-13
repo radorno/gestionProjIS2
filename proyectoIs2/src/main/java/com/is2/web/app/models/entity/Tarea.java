@@ -21,22 +21,31 @@ public class Tarea implements Serializable{
 	private String estado;
 	private String descripcion;
 	private String observacion;
-	private long tareaPadre;
+	private String codigoProyecto;
+	private String tareaPadre;
 	public long getId() {
 		return id;
 	}
 	
+	public String getCodigoProyecto() {
+		return codigoProyecto;
+	}
+
+	public void setCodigoProyecto(String codigoProyecto) {
+		this.codigoProyecto = codigoProyecto;
+	}
+
 	public String getCodigoTarea() {
 		return codigoTarea;
 	}
 
 
 
-	public long getTareaPadre() {
+	public String getTareaPadre() {
 		return tareaPadre;
 	}
 
-	public void setTareaPadre(long tareaPadre) {
+	public void setTareaPadre(String tareaPadre) {
 		this.tareaPadre = tareaPadre;
 	}
 

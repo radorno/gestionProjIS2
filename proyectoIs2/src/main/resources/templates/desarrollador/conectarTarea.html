@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<title>Conectar Tareas</title> 
+ 	<link rel="stylesheet" href="/css/imagen.css">
+</head>
+<body>
+<link rel="stylesheet" >
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1>Conectar Tareas</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img th:src="@{/img/user.png}" width="30" height="30">
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/desarrollo/conectarTarea}" th:number = ${tarea} method="post">
+		 <center>
+		 <font color="#145DC7">
+			<p>Codigo Tarea &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" th:field= "*{tarea.codigoTarea}" name="codigoTarea" size="18" />
+			<p>Codigo de Tarea Padre :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" th:field= "*{tarea.tareaPadre}" name="tareaPadre" size="18" />
+			</p>
+		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Conectar"> </p> 
+		 </center>
+		 </font>
+		</form>
+		<input type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" />
+	  </td>
+	 </td>
+	</table>
+	<h1 th:text="${error}"></h1>
+	
+</body>
+
+	
