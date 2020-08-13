@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<title>Eliminacion Linea Base</title> 
+ 	<link rel="stylesheet" href="/css/imagen.css">
+</head>
+<body>
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1>Eliminar Linea Base</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img th:src="@{/img/user.png}" width="30" height="30">
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/gestion/modificarLB}" th:object = ${rol} method="post">
+		 <center>
+		 <font ccolor="#145DC7">
+			<p> Codigo Linea Base :&nbsp;&nbsp;&nbsp;
+		 	<input type="text" th:field= "*{codLineaBase}" name="codLineaBase" size="18" />
+			<p>Fecha Eliminacion :&nbsp;&nbsp;&nbsp;
+			<input type="Date"  th:field= "*{fechaEliminacion}" name="fechaEliminacion"/> </p> 
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <div class="btn-toolbar botones-gestion" role="toolbar">
+	    	<div class="btn-group">
+	        	<button onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-outline-primary boton" >Atras</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="Guardar"></p>
+	    	</div>
+   		</div>
+		 </center>
+		 </font>
+		<input type="hidden" th:field="*{id}"> 
+		</form>
+	  </td>
+	 </td>
+	</table>
+</body>
