@@ -1,0 +1,44 @@
+<head>
+    <title>Modificacion de Tarea</title> 
+    <link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
+</head>
+<body >
+   <center> 
+   <br>
+   <font color="#145DC7">
+   <h1>Busqueda de Tareas Por Linea Base</h1> 
+   </font>
+   </center> <br>
+   <table border ="3" align="center" width="25%" >
+    <tr>
+      <td width="5000%">
+       <blockquote>
+       <center>
+       <p> <img src=../../static/img/user.png th:src="@{/img/user.png}" width="30" height="30">
+       <font color="#145DC7">
+       <b>Favor complete los campos</b> </p> 
+       </font>
+       </center>
+       </blockquote>
+       <p><br>
+      </td>
+    </tr>
+    <tr>
+     <td>
+       <form action='#'  th:action="@{/app/gestion/buscar_linea_base}" th:number = ${lineaBase} method="post">
+        <center>
+        <font color="#145DC7">
+           <p>Buscar por Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="number" th:field= "*{codLineaBase}" name="id" size="18"/>
+           </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="button" onclick="location.href='/app/gestion/modulogestion'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="submit" value="Buscar"> </p>  
+        </center>
+        </font>
+       </form>
+     </td>
+    </td>
+   </table>
+</body>
