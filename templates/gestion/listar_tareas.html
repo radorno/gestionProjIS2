@@ -33,12 +33,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <th:block th:each="lb : ${LineaBase}">
-                                    <tr>
-                                        <td colspan ="2" th:text="${lb.codLineaBase}">1</td>
-                                    </tr>
-                                    <th:block th:each="tareas : ${LineaBase.tarea}">
+                                    <th:block th:each="tareas : ${tarea}">
                                         <tr>
+					    <tr>
+                                        	<td colspan ="7" th:text="${tareas.codLineaBase}">1</td>
+                                    	    </tr>
                                             <td th:text="${tareas.id}">134</td>
                                             <td th:text="${tareas.version}">s</td>
                                             <td th:text="${tareas.prioridad}">importante</td>
@@ -48,7 +47,6 @@
                                             <td th:text="${tareas.id_tarea_padre}">100</td>
                                         </tr>    
                                     </th:block>
-                                </th:block>
                             </tbody>
                         </table>
                     </div>
