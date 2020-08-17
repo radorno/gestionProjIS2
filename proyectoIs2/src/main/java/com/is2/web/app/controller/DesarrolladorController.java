@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.is2.web.app.models.dao.IProyectoDao;
 import com.is2.web.app.models.dao.IRolDao;
 import com.is2.web.app.models.dao.ITareaDao;
+import com.is2.web.app.models.dao.IUsuarioDao;
 import com.is2.web.app.models.entity.Proyecto;
 import com.is2.web.app.models.entity.Rol;
 import com.is2.web.app.models.entity.Tarea;
@@ -28,7 +29,9 @@ public class DesarrolladorController {
 	private IProyectoDao proyectoDao;
 	@Autowired
 	private ITareaDao tareaDao;
-
+	@Autowired
+	private IUsuarioDao usuarioDao;
+	
 	@GetMapping({ "/desarrollo" })
 	public String menuDesarrollo() {
 		return "desarrollador/desarrollo";
@@ -50,37 +53,45 @@ public class DesarrolladorController {
 		model.put("proyecto", proyecto);
 		model.put("error", "");
 		return "desarrollador/crearProyecto";
-	
+
 	}
 
 	@RequestMapping(value = "/desarrollo/crearProyecto", method = RequestMethod.POST)
 	public String guardarRoles(@Valid Proyecto proyecto, BindingResult result, Model model) {
-		if(result.hasErrors()) {
-			model.addAttribute("error","error volver a cargar campos" );
+	
+		Usuario usuario = new Usuario();
+		usuario = usuarioDao.findUser(proyecto.getAdmin());
+		if (result.hasErrors()) {
+			model.addAttribute("error", "error volver a cargar campos");
 			return "desarrollador/crearProyecto";
 		}
 		
-		
-		if( proyectoDao.findProyecto(proyecto.getCodigoProyecto()) != null ) {
-			
-			if (proyecto.getId() == 0) {
-				model.addAttribute("error","error Proyecto ya existe dentro de la base de datos" );
-				return "desarrollador/crearProyecto";
-				} else {
-					proyectoDao.save(proyecto);
-					return "desarrollador/gestionProyecto";
-				}
-		}else {
-		
-		proyectoDao.save(proyecto);
-		return "desarrollador/gestionProyecto";
+		if(usuario == null){
+			model.addAttribute("error", "error Admin no existe en base de datos");
+			return "desarrollador/crearProyecto";
 		}
 		
+
+		if (proyectoDao.findProyecto(proyecto.getCodigoProyecto()) != null) {
+
+			if (proyecto.getId() == 0) {
+				model.addAttribute("error", "error Proyecto ya existe dentro de la base de datos");
+				return "desarrollador/crearProyecto";
+			} else {
+				proyectoDao.save(proyecto);
+				return "desarrollador/gestionProyecto";
+			}
+		} else {
+
+			proyectoDao.save(proyecto);
+			return "desarrollador/gestionProyecto";
+		}
+
 	}
 
 	@GetMapping({ "/desarrollo/modificarProyecto" })
 	public String modificarProyecto(Map<String, Object> model) {
-		
+
 		Proyecto proyectoNuevo = new Proyecto();
 		model.put("proyecto", proyectoNuevo);
 		return "desarrollador/modificarProyecto";
@@ -90,22 +101,17 @@ public class DesarrolladorController {
 	public String modificarProyecto(Proyecto proyectoNuevo, Map<String, Object> model, Model models) {
 		Proyecto proyecto = null;
 		proyecto = proyectoDao.findProyecto(proyectoNuevo.getCodigoProyecto());
-		if(proyecto == null) {
-			models.addAttribute("error","error Proyecto no existe" );
+		if (proyecto == null) {
+			models.addAttribute("error", "error Proyecto no existe");
 			return "desarrollador/modificarProyecto";
-		}else {
-		
-	
-		model.put("proyecto", proyecto);
-		model.put("error","");
-		
-		return "desarrollador/crearProyecto";
-		}
-		
-		
-		
+		} else {
 
-		
+			model.put("proyecto", proyecto);
+			model.put("error", "");
+
+			return "desarrollador/crearProyecto";
+		}
+
 	}
 
 	@GetMapping({ "/desarrollo/modificarTarea" })
@@ -166,6 +172,72 @@ public class DesarrolladorController {
 			return "desarrollador/gestionTarea";
 		}
 
+	}
+
+	@GetMapping({ "/desarrollo/asignarTarea" })
+	public String asignarTarea(Map<String, Object> model) {
+		Tarea tarea = new Tarea();
+
+		model.put("tarea", tarea);
+		model.put("error", "");
+		return "desarrollador/asignarTarea";
+	}
+
+	@RequestMapping(value = "/desarrollo/asignarTarea", method = RequestMethod.POST)
+	public String asignarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
+
+		Tarea tarea = null;
+		Proyecto proyecto = null;
+		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
+		proyecto = proyectoDao.findProyecto(tareaNuevo.getCodigoProyecto());
+		if (tarea == null) {
+			models.addAttribute("error", "error Tarea no existe");
+			return "desarrollador/asignarTarea";
+		} else if (proyecto == null) {
+			models.addAttribute("error", "error Proyecto no existe");
+			return "desarrollador/asignarTarea";
+		} else {
+			tarea.setCodigoProyecto(tareaNuevo.getCodigoProyecto());
+			model.put("error", "Tarea asignada con exito");
+			tareaDao.save(tarea);
+			return "desarrollador/asignarTarea";
+		}
+	}
+
+	@GetMapping({ "/desarrollo/conectarTarea" })
+	public String conectarTarea(Map<String, Object> model) {
+		Tarea tarea = new Tarea();
+
+		model.put("tarea", tarea);
+		model.put("error", "");
+		return "desarrollador/conectarTarea";
+	}
+
+	@RequestMapping(value = "/desarrollo/conectarTarea", method = RequestMethod.POST)
+	public String conectarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
+
+		Tarea tarea = null;
+		Tarea tareaPadre = null;
+		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
+		tareaPadre = tareaDao.findTarea(tareaNuevo.getTareaPadre());
+
+		if (tarea == null) {
+			models.addAttribute("error", "error Tarea no existe");
+			return "desarrollador/conectarTarea";
+		} else if (tareaPadre == null) {
+			models.addAttribute("error", "error Tarea Padre no existe");
+			return "desarrollador/conectarTarea";
+		} else if (tarea.getCodigoTarea() == tareaPadre.getTareaPadre()) {
+			models.addAttribute("error",
+					"error de coneccion la se quiere asignar en tareaPadre la tarea del hijo como tarea padre");
+			return "desarrollador/conectarTarea";
+
+		} else {
+			tarea.setTareaPadre(tareaNuevo.getTareaPadre());
+			model.put("error", "Tarea conectada con exito");
+			tareaDao.save(tarea);
+			return "desarrollador/conectarTarea";
+		}
 	}
 
 }

@@ -174,6 +174,35 @@ public class AdminController {
 			return "administrador/modificarRoles";
 		}
 		
+		@GetMapping({"/administrativo/asignarRol"})       
+		public String asignarRol(Map<String, Object> model){
+			Usuario usuario = new Usuario();
+			
 		
+			model.put("usuario",usuario);
+			model.put("error","");
+			return "administrador/asignarRol";
+		}
+		
+		@RequestMapping(value="/administrativo/asignarRol", method=RequestMethod.POST)
+		public String asignarRol(Usuario usuarioNuevo, Map<String, Object> model, Model models) {
+			
+			Usuario usuario = null;
+			Rol     rol     = null;
+			usuario = usuarioDao.findUser(usuarioNuevo.getUserCode());
+			rol = rolDao.findRol(usuarioNuevo.getNombreRol());
+			if(usuario == null) {
+				models.addAttribute("error","error Usuario no existe" );
+				return "administrador/asignarRol";
+			}else if(rol == null) {
+				models.addAttribute("error","error Rol no existe" );
+				return "administrador/asignarRol";
+			}else {
+			usuario.setNombreRol(usuarioNuevo.getNombreRol());	
+			model.put("error","Rol asignado con exito");
+			usuarioDao.save(usuario);
+			return "administrador/asignarRol";
+			}
+		}
 		
 }
