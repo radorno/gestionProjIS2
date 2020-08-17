@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<title>Creacion de Usuarios</title> 
+	<link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
+</head>
+<body>
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1 th:text="${error}">Crear Usuario</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img src=../../static/img/user.png th:src="@{/img/user.png}" width="30" height="30"/>
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/administrativo/crearUsuarios}" th:object = ${usuario} method="post">
+		 <center>
+		 <font color="#145DC7">
+		 <p>Nombres: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{nombre}" name="nombre"maxlength="20"/> </p> 
+		 <p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"  ></p>
+		 <p>Apellidos: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		 <input type="text" th:field= "*{apellido}" name="apellido"/maxlength="20"> </p> 
+		 <p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:erros="*{apellido}"  ></p>
+		 <p>UserCode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{userCode}" name="code"/maxlength="20"/> </p> 
+		 <p class="form-text text-danger" th:if="${#fields.hasErrors('userCode')}" th:erros="*{userCode}"  ></p>
+		 <p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select  name="Roles" th:field= "*{nombreRol}">
+			<option value=""></option>
+			<option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
+		 </select>
+		 <p>Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		 <input type="password" th:field= "*{password}" name="pass"/> </p> 
+		 <p class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:erros="*{password}"  ></p>
+		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Guardar"> </p> 
+		 </center>
+		 </font>
+		<input type="hidden" th:field="*{id}"> 
+		</form>
+		<input type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
+	  </td>
+	 </td>
+	</table>
+	
+</body>
+
+	

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<title>Modificacion de Usuarios</title> 
+ 	<link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
+</head>
+<body>
+<link rel="stylesheet" >
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1>Modificar Usuario</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img src=../../static/img/user.png th:src="@{/img/user.png}" width="30" height="30"/>
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/administrativo/modificarUsuario}" th:number = ${usuario} method="post">
+		 <center>
+		 <font color="#145DC7">
+			<p>Buscar por Usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" th:field= "*{usuario.userCode}" name="usuario" size="18" />
+			</p>
+		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Buscar"> </p> 
+		 </center>
+		 </font>
+		</form>
+		<input type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
+	  </td>
+	 </td>
+	</table>
+	<h1 th:text="${error}"></h1> 
+</body>
+
+	
