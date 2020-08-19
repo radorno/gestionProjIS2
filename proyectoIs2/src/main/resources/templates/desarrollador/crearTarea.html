@@ -1,58 +1,90 @@
 <head>
  	<title>Creacion de Tareas</title> 
- 	<link rel="stylesheet" href="/css/imagen.css">
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <!--BOOTSTRAP-->
+	 <link rel="stylesheet"
+		 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+	<!--CUSTOM CSS-->
+	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body >
-	<center> 
-	<br>
-	<font color="#145DC7">
-	<h1 th:text="${error}">Crear Tarea</h1> 
-	</font>
-	</center> <br>
-	<table border ="3" align="center" width="25%" >
-     <tr>
-       <td width="5000%">
-		<blockquote>
-		<center>
-		<p> <img th:src="@{/img/user.png}" width="30" height="30">
-		<font color="#145DC7">
-		<b>Favor complete los campos</b> </p> 
-		</font>
-		</center>
-		</blockquote>
-		<p><br>
-	   </td>
-     </tr>
-	 <tr>
-	  <td>
-		<form th:action="@{/app/desarrollo/crearTarea}"  th:object = ${tarea} method="post">
-		 <center>
-		 <font color="#145DC7">
-		 <p>CodigoTarea : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="text" th:field= "*{codigoTarea}" name="codigoTarea"maxlength="12"/> </p> 
-		 <p>version : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		 <input type="text"  th:field= "*{version}" name="version"/maxlength="12"> </p> 
-		 <p>Prioridad : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="text" th:field= "*{prioridad}" name="prioridad"maxlength="12"/> </p> 
-		 <p>Estado :&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <select type="text"  name="estado" th:field= "*{estado}">
-			<option value="">                       </option>
-			<option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-			<option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-			<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>		
-		 </select>
-		 <p>Descripcion:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p>
-		 <p>Observacion : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="text" th:field= "*{observacion}" name="obs"/> </p> 
-		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Guardar"> </p> 
-		 </center>
-		 </font>
-		 <input type="hidden" th:field="*{id}"> 
-		</form>
-	  </td>
-	 </td>
-	</table>
+	<!--SE ESPECIFICAN LOS ERRORES-->
+	<section>
+        <div class="container text-light pt-3">
+			<h1 th:text="${error}"></h1>
+        </div>
+	</section>
+	<!--FORMULARIO-->
+	<div class="container py-5">
+        <div class="row justify-content-center pt-5 mt-5 mr-1">
+            <div class="col-lg-6">
+				<div class="form-group text-light text-center">
+					<h3>CREAR TAREA</h3>
+					<br>
+					<p>Debe ingresar los datos de la tarea a ser creado.</p>
+				</div>
+				<form class="formulario mt-5" th:action="@{/app/desarrollo/crearTarea}"  th:object = ${tarea} method="post">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<p>Tarea : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese Codigo" class="form-control text-light" type="text" th:field= "*{codigoTarea}" name="codigoTarea" maxlength="12"/> </p> 
+						</div>
+						<div class="form-group col-md-6">
+							<p>Version : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input placeholder="Ingrese Version"class="form-control text-light" type="text"  th:field= "*{version}" name="version"maxlength="12"> </p> 
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<p>Prioridad : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese Prioridad" class="form-control text-light" type="text" th:field= "*{prioridad}" name="prioridad"maxlength="12"/> </p> 
+						</div>
+						<div class="form-group col-md-6">
+							<p>Estado :&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<select class="form-control text-light" type="text"  name="estado" th:field= "*{estado}">
+									<option value="">Seleccione una opcion</option>
+									<option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									<option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>		
+								</select>
+							</p>
+						</div>	
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<p>Descripcion:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese Descripcion" class="form-control text-light" type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p>
+						</div>
+						<div class="form-group col-md-6">
+							<p>Observacion : &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese Observacion" class="form-control text-light" type="text" th:field= "*{observacion}" name="obs"/> </p> 
+						</div>	
+					</div>
+					<div class="form-group">	
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="btn btn-block btn-secondary" type="submit" value="Guardar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="hidden" th:field="*{id}"> 
+						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" /></p> 
+					</div>
+				</form>
+			</div>
+        </div>
+    </div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+		
+	
 </body>

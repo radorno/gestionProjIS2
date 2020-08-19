@@ -1,44 +1,47 @@
 <head>
  	<title>Modificacion de Tarea</title> 
- 	 <link rel="stylesheet" href="/css/imagen.css">
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <!--BOOTSTRAP-->
+	 <link rel="stylesheet"
+		 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+	 <!--FONT AWESOME-->
+	 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	 <!--CUSTOM CSS-->
+ 	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body >
-	<center> 
-	<br>
-	<font color="#145DC7">
-	<h1  th:text="${error}">Modificar Tarea</h1> 
-	</font>
-	</center> <br>
-	<table border ="3" align="center" width="25%" >
-     <tr>
-       <td width="5000%">
-		<blockquote>
-		<center>
-		<p><img th:src="@{/img/user.png}" width="30" height="30">
-		<font color="#145DC7">
-		<b>Favor complete los campos</b> </p> 
-		</font>
-		</center>
-		</blockquote>
-		<p><br>
-	   </td>
-     </tr>
-	 <tr>
-	  <td>
-		<form action='#'  th:action="@{/app/desarrollo/modificarTarea}" th:number = ${tarea} method="post">
-		 <center>
-		 <font color="#145DC7">
-			<p>Buscar por Codigo Tarea&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" th:field= "*{tarea.codigoTarea}" name="codigoTarea" size="18"/>
-			</p>
-		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Buscar"> </p> 
-		 </center>
-		 </font>
-		</form>
-	  </td>
-	 </td>
-	</table>
+	<!--SE ESPECIFICAN LOS ERRORES-->
+	<section>
+        <div class="container text-light pt-3">
+			<h1 th:text="${error}"></h1>
+        </div>
+	</section>
+	<!--FORMULARIO-->
+	<div class="container py-5">
+		<div class="row justify-content-center pt-5 mt-5 mr-1">
+			<div class="col-lg-6">
+				<div class="form-group text-light text-center">
+					<h3>MODIFICAR TAREA</h3>
+					<br>
+					<p>Debe ingresar el codigo de la tarea que desea buscar.</p>
+				</div>
+				<form class="formulario mt-5" action='#'  th:action="@{/app/desarrollo/modificarTarea}" th:number = ${tarea} method="post">
+					<div class="input-group pt-5 mb-3">
+						<div class="input-group-prepend">
+							<i class="fas fa-search input-group-text"></i>
+						</div>
+						<input class="form-control text-light" placeholder="Ingrese Codigo" type="text" th:field= "*{tarea.codigoTarea}" name="codigoTarea" size="18"/>
+					</div>
+					<div class="form-group pb-3">
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="btn btn-block btn-secondary" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/desarrollo/gestionTarea'" value="Atras" /></p>
+					</div> 
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
