@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Tareas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+   <!--CUSTOM CSS-->
+   <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    
+</head>
+<body>
+     <!--FORMULARIO-->
+    <div class="container py-5">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${tarea}">
+                    <h2 th:case="null">No hay tareas establecidas!</h2>
+                    <div th:case="*">
+                        <h2>Lista de Tareas</h2>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Tarea</th>
+                                    <th>Version</th>
+                                    <th>Estado</th> 
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody>          
+                            <th:block th:each="tareas : ${tarea}">
+                                <tr>
+                                    <td th:text="${tareas.id}"></td>
+                                    <td th:text="${tareas.version}"></td>
+                                    <td th:text="${tareas.estado}"></td>
+                                    <td th:text="${tareas.descripcion}"></td>
+                                </tr>  
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>      
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="container py-5">
+        <footer>
+            <input onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-primary btn-lg" value="Atras"/>
+        </footer>
+    </section>
+</body>
+</html>

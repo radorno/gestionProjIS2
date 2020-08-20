@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
- 	<title>Modificacion de Usuarios</title> 
- 	<link rel="stylesheet" href="/css/imagen.css">
+ 	<!--BOOTSTRAP-->
+	 <link rel="stylesheet"
+		 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+	 <!--FONT AWESOME-->
+	 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	 <!--CUSTOM CSS-->
+ 	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	 <title>Modificacion de Usuarios</title> 
 </head>
 <body>
-<link rel="stylesheet" >
-	<center> 
-	<br>
-	<font color="#145DC7">
-	<h1>Modificar Usuario</h1> 
-	</font>
-	</center> <br>
-	<table border ="3" align="center" width="25%" >
-     <tr>
-       <td width="5000%">
-		<blockquote>
-		<center>
-		<p> <img th:src="@{/img/user.png}" width="30" height="30">
-		<font color="#145DC7">
-		<b>Favor complete los campos</b> </p> 
-		</font>
-		</center>
-		</blockquote>
-		<p><br>
-	   </td>
-     </tr>
-	 <tr>
-	  <td>
-		<form th:action="@{/app/administrativo/modificarUsuario}" th:number = ${usuario} method="post">
-		 <center>
-		 <font color="#145DC7">
-			<p>Buscar por ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<p>Ingrese busqueda :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="number" th:field= "*{usuario.id}" name="id" size="18" />
-			</p>
-		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Atras"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 <input type="submit" value="Buscar"> </p> 
-		 </center>
-		 </font>
-		</form>
-	  </td>
-	 </td>
-	</table>
+	<!--SE ESPECIFICAN LOS ERRORES-->
+	<section>
+		<div class="container text-light pt-3">
+			<h1 th:text="${error}"></h1>
+		</div>
+	</section> 
+	<!--FORMULARIO-->
+	<div class="container py-5">
+		<div class="row justify-content-center pt-5 mt-5 mr-1">
+			<div class="col-lg-6">
+				<div class="form-group text-light text-center">
+					<h3>MODIFICAR USUARIO</h3>
+					<p>Debe ingresar el userCode a buscar para modificar el usuario.</p>
+				</div>
+				<form class="formulario mt-5" th:action="@{/app/administrativo/modificarUsuario}" th:number = ${usuario} method="post">
+					<!--Buscar por usuario-->
+					<div class="input-group pt-5 mb-3">
+						<div class="input-group-prepend">
+							<i class="fas fa-user input-group-text"></i>
+						</div>
+						<input placeholder="Ingrese usuario" class="form-control text-light" type="text" th:field= "*{usuario.userCode}" name="usuario" size="18" />
+					</div>
+					<div class="form-group pb-3">
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="btn btn-block btn-secondary" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" /> </p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 	

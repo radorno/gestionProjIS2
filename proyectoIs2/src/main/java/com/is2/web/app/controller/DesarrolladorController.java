@@ -79,12 +79,14 @@ public class DesarrolladorController {
 				return "desarrollador/crearProyecto";
 			} else {
 				proyectoDao.save(proyecto);
-				return "desarrollador/gestionProyecto";
+				model.addAttribute("error", "Proyecto creado con exito");
+				return "desarrollador/crearProyecto";
 			}
 		} else {
 
 			proyectoDao.save(proyecto);
-			return "desarrollador/gestionProyecto";
+			model.addAttribute("error", "Proyecto creado con exito");
+			return "desarrollador/crearProyecto";
 		}
 
 	}

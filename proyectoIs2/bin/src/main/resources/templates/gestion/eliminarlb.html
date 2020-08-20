@@ -1,4 +1,7 @@
-<head>	 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ 	<title>Eliminacion Linea Base</title> 
 	 <meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	 <!--BOOTSTRAP-->
@@ -10,7 +13,6 @@
 	 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	 <!--CUSTOM CSS-->
  	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-	 <title>Modificacion Rol</title> 
 </head>
 <body>
 	<!--SE ESPECIFICAN LOS ERRORES-->
@@ -24,23 +26,29 @@
 		<div class="row justify-content-center pt-5 mt-5 mr-1">
 			<div class="col-lg-6">
 				<div class="form-group text-light text-center">
-					<h3>MODIFICAR ROL</h3>
-					<p>Debe ingresar el nombre del rol a buscar.</p>
+					<h3>ELIMINAR LINEA BASE</h3>
+					<br>
+					<p>Debe ingresar el codigo de la linea base que desea eliminar.</p>
 				</div>
-				<form class="formulario mt-5" action='#'  th:action="@{/app/administrativo/modificarRoles}" th:number = ${rol} method="post">
+				<form  class="formulario mt-5" th:action="@{/app/gestion/modificarLB}" th:object = ${rol} method="post">
 					<div class="input-group pt-5 mb-3">
 						<div class="input-group-prepend">
 							<i class="fas fa-search input-group-text"></i>
 						</div>
-						<input placeholder="Ingrese Nombre del Rol" class="form-control text-light" type="text" th:field= "*{rol.nombreRol}" name="id" size="18" />
+						<input placeholder="Ingrese Codigo Linea Base" class="form-control text-light" type="text" th:field= "*{codLineaBase}" name="codLineaBase" size="18" />
+					</div>   
+					<div class="form-group">
+						<p>Fecha Eliminacion :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+						<input class="form-control text-light" type="Date"  th:field= "*{fechaEliminacion}" name="fechaEliminacion"/> </p> 
 					</div>
 					<div class="form-group pb-3">
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-secondary" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/gestionRoles'" value="Atras" /> </p>
+						<input class="btn btn-block btn-secondary" type="submit" value="Guardar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="hidden" th:field="*{id}"> 
+						<input class="btn btn-block btn-primary" onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-outline-primary boton" value="Atras"/></p> 
 					</div> 
 				</form>
 			</div>
 		</div>
-	</div>	
+	</div>
 </body>

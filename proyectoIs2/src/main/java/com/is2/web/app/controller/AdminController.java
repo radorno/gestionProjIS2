@@ -52,10 +52,11 @@ public class AdminController {
 		}
 		
 		@RequestMapping(value="/administrativo/crearUsuarios", method=RequestMethod.POST)       
-		public String guardarUsuario(@Valid Usuario usuario, BindingResult result, Model model){
+		public String guardarUsuario(@Valid Usuario usuario, BindingResult result, Model model,Map<String, Object> models){
 
 			if(result.hasErrors()) {
 				model.addAttribute("error","error volver a cargar campos" );
+				models.put("roles",rolDao.findAll());
 				return "administrador/crearUsuarios";
 			}
 			
@@ -64,6 +65,7 @@ public class AdminController {
 				
 				if (usuario.getId() == 0) {
 					model.addAttribute("error","error usuario ya existe dentro de la base de datos" );
+					models.put("roles",rolDao.findAll());
 					return "administrador/crearUsuarios";
 					} else {
 						usuarioDao.save(usuario);

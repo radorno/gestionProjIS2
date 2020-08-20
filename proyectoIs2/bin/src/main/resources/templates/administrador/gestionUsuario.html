@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Gestion de Usuarios</title>
-	<link rel="stylesheet" href="/css/estilo.css">
+	<link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
 </head>
 <body>
 	<div class="contenido-gral">
@@ -14,7 +14,7 @@
 	    	<div class="btn-group">
 	        	<button  onclick="location.href= '/app/administrativo/crearUsuarios'" type="button" class="btn btn-outline-primary boton" >CREAR USUARIO</button>
 	        	<button onclick="location.href= '/app/administrativo/modificarUsuario'"  type="button" class="btn btn-outline-primary boton">MODIFCAR USUARIO</button>
-	    	    <button onclick="location.href= '/app/administrativo/modificarUsuario'"  type="button" class="btn btn-outline-primary boton">ASIGNAR ROL</button>
+	    	    <button onclick="location.href= '/app/administrativo/asignarRol'"  type="button" class="btn btn-outline-primary boton">ASIGNAR ROL</button>
 	    	</div>
    		</div>
 	</div>

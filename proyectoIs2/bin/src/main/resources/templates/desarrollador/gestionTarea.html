@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Gestion de Tareas</title>
-	<link rel="stylesheet" href="/css/estilo.css">
+	<link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
 </head>
 <body>
 	<div class="contenido-gral">
@@ -14,6 +14,7 @@
 	    	<div class="btn-group">
 	        	<button onclick="location.href= '/app/desarrollo/crearTarea'" type="button" class="btn btn-outline-primary boton" >CREAR TAREAS</button>
 	        	<button onclick="location.href= '/app/desarrollo/modificarTarea'" type="button" class="btn btn-outline-primary boton">MODIFICAR TAREAS</button>
+	    	    <button onclick="location.href= '/app/desarrollo/conectarTarea'" type="button" class="btn btn-outline-primary boton">CONECTAR TAREAS</button>
 	    	</div>
    		</div>
 	</div>

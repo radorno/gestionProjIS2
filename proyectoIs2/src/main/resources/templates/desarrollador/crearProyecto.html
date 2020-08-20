@@ -57,14 +57,7 @@
 								</select>
 							</p>
 						</div>
-						<div class="form-group col-md-6">
-							<p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<select  class="form-control text-light" name="Roles" th:field= "*{nombreRol}">
-								   <option value="">Seleccione una opcion</option>
-								   <option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
-								</select>
-							</p>	
-						</div>	
+				
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
