@@ -28,33 +28,28 @@
 					<br>
 					<p>Debe ingresar los datos de la linea base a ser creado.</p>
 				</div>
-				<form class="formulario mt-5" th:action="@{/app/gestion/crearLineaBase}" th:object = ${rol} method="post">
+				<form class="formulario mt-5" th:action="@{/app/gestion/crearLineaBase}" th:object = ${lineaBase} method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<p>Linea Base :
-							<input placeholder="Ingrese Codigo" class="form-control text-light" type="text" th:field= "*{codLineaBase}" name="codLineaBase" size="18" />
+							<input placeholder="Ingrese Codigo" class="form-control text-light" type="text" th:field= "*{codigo}" name="codigo" size="18" />
 						</div>
 						<div class="form-group col-md-6">
-							<p>Tarea :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Tarea" class="form-control text-light" type="text" th:field= "*{tarea}" name="tarea" size="18" />
-							</p>
+							<p>Descripcion :
+							<input placeholder="Ingrese Descripcion" class="form-control text-light" type="text" th:field= "*{descripcion}" name="descripcion" size="18" />
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<p>Fecha Inicio : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="form-control text-light" type="Date"  th:field= "*{fechaInicio}" name="fechaInicio"/> </p> 
+							<p>Fecha Creacion : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="form-control text-light" type="Date"  th:field= "*{fechaCreacion}" name="fechaCreacion"/> </p> 
 						</div>
-						<div class="form-group col-md-6">
-							<p>Fecha Fin : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="form-control text-light" type="Date"   th:field= "*{fechaFin}" name="fechaFin"/> </p> 
-						</div>	
 					</div>
 				   <div class="form-group">
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input class="btn btn-block btn-secondary" type="submit" value="Guardar"></p>
 						<input type="hidden" th:field="*{id}"> 
-						<input onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-block btn-primary" value="Atras" />	
+						<input onclick="location.href= '/app/gestion/moduloGestion'" type="button" class="btn btn-block btn-primary" value="Atras" />	
 					</div>
 				</form>
 			</div>

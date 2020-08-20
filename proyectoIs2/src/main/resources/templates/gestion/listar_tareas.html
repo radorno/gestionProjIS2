@@ -20,13 +20,13 @@
     <div class="container py-5">
         <div class="card ">
             <div class="card-body">
-                <div th:switch="${tarea}">
+                <div th:switch="${tareas}">
                     <h2 th:case="null">No hay tareas establecidas!</h2>
                     <div th:case="*">
                         <h2>Lista de Tareas</h2>
                         <table class="table table-hover p-5">
                             <tbody>
-                                    <th:block th:each="tareas : ${tarea}">
+                                    <th:block th:each="tareas : ${tareas}">
                                         <thead>
                                             <tr class="bg-dark text-white">
                                                 <th>Tareas</th>
@@ -44,15 +44,15 @@
                                         <!--LOS DATOS QUE TE SALEN EN PANTALLA SON SOLO PRUEBAS-->
                                         <tr>
                                             <tr>
-                                                <td colspan ="7" th:text="${tareas.codLineaBase}">1</td>
+                                                <td colspan ="7" th:text="${tareas.codLineaBase}"></td>
                                             </tr>   
-                                            <td th:text="${tareas.id}">134</td>
-                                            <td th:text="${tareas.version}">s</td>
-                                            <td th:text="${tareas.prioridad}">importante</td>
-                                            <td th:text="${tareas.estado}">pendiente</td>
-                                            <td th:text="${tareas.descripcion}">se trata de ahorrar</td>
-                                            <td th:text="${tareas.observacion}">faltta metodos</td>
-                                            <td th:text="${tareas.id_tarea_padre}">100</td>
+                                            <td th:text="${tareas.codigoTarea}"></td>
+                                            <td th:text="${tareas.version}"></td>
+                                            <td th:text="${tareas.prioridad}"></td>
+                                            <td th:text="${tareas.estado}"></td>
+                                            <td th:text="${tareas.descripcion}"></td>
+                                            <td th:text="${tareas.observacion}"></td>
+                                            <td th:text="${tareas.tareaPadre}"></td>
                                         </tr> 
                                     </th:block>
                             </tbody>
@@ -64,7 +64,7 @@
     </div>
     <section class="container py-5">
         <footer>
-            <input onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-primary btn-lg" value="Atras" />
+            <input onclick="location.href= '/app/gestion/listarlb'" type="button" class="btn btn-primary btn-lg" value="Atras" />
         </footer>
     </section>
 </body>

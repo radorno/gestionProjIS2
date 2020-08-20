@@ -23,10 +23,22 @@ public class Tarea implements Serializable{
 	private String observacion;
 	private String codigoProyecto;
 	private String tareaPadre;
+	private String codLineaBase;
 	public long getId() {
 		return id;
 	}
 	
+	
+	public String getCodLineaBase() {
+		return codLineaBase;
+	}
+
+
+	public void setCodLineaBase(String codLineaBase) {
+		this.codLineaBase = codLineaBase;
+	}
+
+
 	public String getCodigoProyecto() {
 		return codigoProyecto;
 	}

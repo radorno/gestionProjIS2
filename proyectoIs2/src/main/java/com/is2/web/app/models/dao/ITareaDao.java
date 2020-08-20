@@ -15,4 +15,6 @@ public interface ITareaDao {
 	public Tarea findOne(long id);
 
 	public Tarea findTarea(String codigoTarea);
+	
+	public List<Tarea> findLineaBase(String codLineaBase);
 }
