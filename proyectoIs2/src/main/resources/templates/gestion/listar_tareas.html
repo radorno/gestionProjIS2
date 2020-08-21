@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Listar Tareas</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <!--BOOTSTRAP-->
     <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -20,14 +18,13 @@
     <div class="container py-5">
         <div class="card ">
             <div class="card-body">
-                <div th:switch="${tareas}">
+                <!--div th:switch="${Tarea}">
                     <h2 th:case="null">No hay tareas establecidas!</h2>
-                    <div th:case="*">
+                    <div th:case="*"-->
                         <h2>Lista de Tareas</h2>
                         <table class="table table-hover p-5">
                             <tbody>
-                                    <th:block th:each="tareas : ${tareas}">
-                                        <thead>
+                            		<thead>
                                             <tr class="bg-dark text-white">
                                                 <th>Tareas</th>
                                                 <th>Version</th>
@@ -35,30 +32,30 @@
                                                 <th>Estado</th> 
                                                 <th>Descripcion</th>
                                                 <th>Observacion</th>
-                                                <th>Tarea Padre</th>              
-                                            </tr>
-                                            <tr class="bg-secondary text-white ">
-                                                <th colspan="7">Codigo Linea Base</th>
+                                                <th>Proyecto</th>
+                                                <th>Tarea Padre</th> 
+                                                <th>Linea Base</th>             
                                             </tr>
                                         </thead>
-                                        <!--LOS DATOS QUE TE SALEN EN PANTALLA SON SOLO PRUEBAS-->
-                                        <tr>
-                                            <tr>
-                                                <td colspan ="7" th:text="${tareas.codLineaBase}"></td>
-                                            </tr>   
-                                            <td th:text="${tareas.codigoTarea}"></td>
-                                            <td th:text="${tareas.version}"></td>
-                                            <td th:text="${tareas.prioridad}"></td>
-                                            <td th:text="${tareas.estado}"></td>
-                                            <td th:text="${tareas.descripcion}"></td>
-                                            <td th:text="${tareas.observacion}"></td>
-                                            <td th:text="${tareas.tareaPadre}"></td>
+                                    <div th:each="tar :${tareas}">
+                                    <!-- Por si haya problemas -->
+                                    <!-- ${#lists.toList(tareas)} -->
+                                        <tr>  
+                                        	<td th:text="${tar.codigoTarea}"></td>
+                                        	<td th:text="${tar.version}"></td>
+                                        	<td th:text="${tar.prioridad}"></td>
+                                        	<td th:text="${tar.estado}"></td>
+                                            <td th:text="${tar.descripcion}"></td>
+                                            <td th:text="${tar.observacion}"></td>
+                                            <td th:text="${tar.codigoProyecto}"></td>
+                                            <td th:text="${tar.tareaPadre}"></td>
+                                            <td th:text="${tar.codLineaBase}"></td>
                                         </tr> 
-                                    </th:block>
+                                    </div>
                             </tbody>
                         </table>
-                    </div>
-                </div>
+                    <!--/div>
+                </div-->
             </div>
         </div>
     </div>

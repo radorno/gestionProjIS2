@@ -20,10 +20,10 @@
     <div class="container py-5">
         <div class="card">
             <div class="card-body">
-                <div th:switch="${tarea}">
+                <!--div th:switch="${tarea}">
                     <h2 th:case="null">No hay tareas establecidas!</h2>
-                    <div th:case="*">
-                        <h2>Lista de Tareas</h2>
+                    <div th:case="*"-->
+                        <h2>Lista de Tareas correspondientes a Linea Base buscado</h2>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -34,18 +34,18 @@
                                 </tr>
                             </thead>
                             <tbody>          
-                            <th:block th:each="tareas : ${tarea}">
-                                <tr>
-                                    <td th:text="${tareas.id}"></td>
-                                    <td th:text="${tareas.version}"></td>
-                                    <td th:text="${tareas.estado}"></td>
-                                    <td th:text="${tareas.descripcion}"></td>
-                                </tr>  
-                            </th:block>
+                            <div th:each="tar :${tareas}">
+                                <tr>  
+                                    <td th:text="${tar.codigoTarea}"></td>
+                                    <td th:text="${tar.version}"></td>
+                                    <td th:text="${tar.estado}"></td>
+                                    <td th:text="${tar.descripcion}"></td>
+                                </tr> 
+                            </div>
                             </tbody>
                         </table>
-                    </div>      
-                </div>
+                    <!--/div>      
+                </div-->
             </div>
         </div>
     </div>
