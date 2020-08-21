@@ -73,4 +73,30 @@ public class TareaDaoImpl implements ITareaDao {
 		}
 	}
 
+    @Override
+    @Transactional
+    public void desbloquearTarea(String codLineaBase) {
+        
+        List<Tarea> tarea;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM TAREAS WHERE COD_LINEA_BASE = :codigo", Tarea.class);
+		nativeQuery.setParameter("codigo", codLineaBase);
+		tarea = nativeQuery.getResultList();
+		if (!tarea.isEmpty()) {
+			
+                    for(int i = 0 ; i < tarea.size();i++){
+                        tarea.get(i).setCodLineaBase(" ");
+                        tarea.get(i).setEstado("desbloqueado");                       
+                        em.merge(tarea.get(i));
+                        
+                    }    
+		} 
+        
+ 
+    }
+
+    @Override
+    public void bloquearTarea(String codLineaBase) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

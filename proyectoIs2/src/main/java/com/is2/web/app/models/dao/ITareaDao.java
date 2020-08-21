@@ -17,4 +17,8 @@ public interface ITareaDao {
 	public Tarea findTarea(String codigoTarea);
 	
 	public List<Tarea> findLineaBase(String codLineaBase);
+        
+        public void desbloquearTarea(String codLineaBase);
+        
+        public void bloquearTarea(String codLineaBase);
 }

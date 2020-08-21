@@ -13,5 +13,7 @@ public interface ILineaBaseDao {
 	public LineaBase findOne(long id);
 	
 	public LineaBase findLineaBase(String codigo);
+        
+        public void removeLineaBase(LineaBase lineaBase);
 
 }

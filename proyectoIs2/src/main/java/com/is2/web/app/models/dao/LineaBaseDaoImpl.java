@@ -59,6 +59,16 @@ public class LineaBaseDaoImpl implements ILineaBaseDao{
 		}
 		
 	}
+
+    @Override
+    @Transactional
+    public void removeLineaBase(LineaBase lineaBase) {
+       LineaBase l = em.find(LineaBase.class, lineaBase.getId());
+        System.out.println(lineaBase.getId());
+       em.remove(l);
+        
+    
+    }
 	
 	
 

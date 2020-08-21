@@ -30,22 +30,18 @@
 					<br>
 					<p>Debe ingresar el codigo de la linea base que desea eliminar.</p>
 				</div>
-				<form  class="formulario mt-5" th:action="@{/app/gestion/modificarLB}" th:object = ${rol} method="post">
+				<form  class="formulario mt-5" th:action="@{/app/gestion/eliminarlb}" th:object = ${lineaBase} method="post">
 					<div class="input-group pt-5 mb-3">
 						<div class="input-group-prepend">
 							<i class="fas fa-search input-group-text"></i>
 						</div>
-						<input placeholder="Ingrese Codigo Linea Base" class="form-control text-light" type="text" th:field= "*{codLineaBase}" name="codLineaBase" size="18" />
+						<input placeholder="Ingrese Codigo Linea Base" class="form-control text-light" type="text" th:field= "*{codigo}" name="codigo" size="18" />
 					</div>   
-					<div class="form-group">
-						<p>Fecha Eliminacion :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-						<input class="form-control text-light" type="Date"  th:field= "*{fechaEliminacion}" name="fechaEliminacion"/> </p> 
-					</div>
 					<div class="form-group pb-3">
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-secondary" type="submit" value="Guardar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="hidden" th:field="*{id}"> 
-						<input class="btn btn-block btn-primary" onclick="location.href= '/app/gestion/modulogestion'" type="button" class="btn btn-outline-primary boton" value="Atras"/></p> 
+						<input class="btn btn-block btn-secondary" type="submit" value="Eliminar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p> 
+						<input type="hidden" th:field="*{id}"/> 
+						<input class="btn btn-block btn-primary" onclick="location.href= '/app/gestion'" type="button"  value="Atras"/>
 					</div> 
 				</form>
 			</div>

@@ -105,14 +105,74 @@ public class GestionController {
 		}else {
 		
 		
-		model.put("lineaBase", lineaBase);
+		model.put("tareas", tareaDao.findLineaBase(lineaBaseNuevo.getCodigo()));
 		model.put("error","");
 		
 		return "gestion/ver_linea_base";
 		}
+                
+                
 	}
 	
+        @GetMapping({ "/gestion/eliminarlb" })
+	public String eliminarLineaBase(Map<String, Object> model,Model models) {
+		LineaBase lineaBaseAeliminar = new LineaBase();
+		model.put("lineaBase",lineaBaseAeliminar);
+                models.addAttribute("error","" );
+		return "/gestion/eliminarlb";
+	}
 	
+        @RequestMapping(value="/gestion/eliminarlb", method=RequestMethod.POST)
+		public String modificarRoles(LineaBase lineaBaseAeliminar, Map<String, Object> model,Model models) {
+			LineaBase lineaBase = null;
+			lineaBase = lineaBaseDao.findLineaBase(lineaBaseAeliminar.getCodigo());
+			
+                        
+                        if(lineaBase == null) {
+				models.addAttribute("error","error Linea base a Eliminar no existe" );
+				return "/gestion/eliminarlb";
+			}else {
+			    models.addAttribute("error"," Linea base eliminada con exito" );
+                            lineaBaseDao.removeLineaBase(lineaBase);
+                            tareaDao.desbloquearTarea(lineaBase.getCodigo());
+                            
+                            
+			
+			return "/gestion/eliminarlb";
+			}
+			
+                        
+                        
+        }
+                
+         @GetMapping({ "/gestion/agregar_tarea_lb" })
+	public String conectarTarea(Map<String, Object> model) {
+		Tarea tarea = new Tarea();
+
+		model.put("tarea", tarea);
+		model.put("error", "");
+		return "gestion/agregar_tarea_lb";
+	}
+
+	@RequestMapping(value = "gestion/agregar_tarea_lb", method = RequestMethod.POST)
+	public String conectarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
+
+		Tarea tarea = null;
+		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
+	
+
+		if (tarea == null) {
+			models.addAttribute("error", "error Tarea no existe");
+			return "gestion/agregar_tarea_lb";
+		} else {
+                        tarea.setCodLineaBase(tareaNuevo.getCodLineaBase());
+                        tarea.setEstado("bloqueado");
+                        tareaDao.save(tarea);
+			model.put("error", "Tarea Bloqueada en Linea Base con exito");
+			
+			return "gestion/agregar_tarea_lb";
+		}
+	}       
 	
 	
 }
