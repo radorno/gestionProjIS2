@@ -96,6 +96,7 @@ public class TareaDaoImpl implements ITareaDao {
 
     @Override
     public void bloquearTarea(String codLineaBase) {
+       
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

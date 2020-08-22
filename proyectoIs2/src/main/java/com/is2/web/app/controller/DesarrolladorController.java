@@ -133,12 +133,18 @@ public class DesarrolladorController {
 
 			return "desarrollador/modificarTarea";
 		} else {
-
-			model.put("tarea", tarea);
+                   
+                    if(tarea.getEstado().equals("BLOQUEADO")){
+			models.addAttribute("error", "error Tarea bloqueada no modificable");
+			return "desarrollador/modificarTarea";
+                    }else{
+                        model.put("tarea", tarea);
 			model.put("valid", valid);
 			model.put("error", "");
 
 			return "desarrollador/crearTarea";
+                    
+                    }    
 		}
 
 	}
