@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Tareas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+   <!--CUSTOM CSS-->
+   <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+  
+</head>
+<body>
+     <!--FORMULARIO-->
+    <div class="container py-5">
+        <div class="card ">
+            <div class="card-body">
+                <!--div th:switch="${proyectos}">
+                    <h2 th:case="null">No hay proyectos establecidos!</h2>
+                    <div th:case="*"-->
+                        <h2>Lista de Proyectos</h2>
+                        <table class="table table-hover p-5">
+                            <tbody>
+                            		<thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>Proyecto</th>
+                                                <th>Administrador</th>
+                                                <th>Fase</th>
+                                                <th>Descripcion</th>
+                                                <th>Estado</th>
+                                                <th>Fecha Inicio</th>
+                                                <th>Fecha Fin</th>            
+                                            </tr>
+                                        </thead>
+                                    <div th:each="proyecto :${proyectos}">
+                                    <!-- Por si haya problemas -->
+                                    <!-- ${#lists.toList(proyectos)} -->
+                                        <tr>  
+                                        	<td th:text="${proyecto.codigoProyecto}"></td>
+                                        	<td th:text="${proyecto.Admin}"></td>
+                                        	<td th:text="${proyecto.Fase}"></td>
+                                        	<td th:text="${proyecto.descripcion}"></td>
+                                            <td th:text="${proyecto.estado}"></td>
+                                            <td th:text="${proyecto.fechaInicio}"></td>
+                                            <td th:text="${proyecto.fechaFin}"></td>
+                                        </tr> 
+                                    </div>
+                            </tbody>
+                        </table>
+                    <!--/div>
+                </div-->
+            </div>
+        </div>
+    </div>
+    <section class="container py-5">
+        <footer>
+            <input onclick="location.href= '/app/desarrollo/gestionProyecto'" type="button" class="btn btn-primary btn-lg" value="Atras" />
+        </footer>
+    </section>
+</body>
+</html>

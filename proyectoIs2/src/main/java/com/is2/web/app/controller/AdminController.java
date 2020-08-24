@@ -103,6 +103,12 @@ public class AdminController {
 			return "administrador/modificarUsuario";
 		}
 	
+                @GetMapping({ "/administrativo/verUsuarios" })
+                public String verUsuarios(Map<String, Object> model) {
+		
+		model.put("usuarios", usuarioDao.findAll());
+		return "administrador/verUsuarios";
+                } 
 		
 		@GetMapping({"/administrativo/gestionUsuario"})       
 		public String gestionUsuario(Model model){
@@ -150,7 +156,12 @@ public class AdminController {
 			
 		}
 		
+		@GetMapping({ "/administrativo/verRoles" })
+                public String verRoles(Map<String, Object> model) {
 		
+		model.put("roles", rolDao.findAll());
+		return "administrador/verRoles";
+                } 
 		
 		@RequestMapping(value="/administrativo/modificarRoles", method=RequestMethod.POST)
 		public String modificarRoles(Rol rolNuevo, Map<String, Object> model,Model models) {

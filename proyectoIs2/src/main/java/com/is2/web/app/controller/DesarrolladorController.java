@@ -91,6 +91,14 @@ public class DesarrolladorController {
 
 	}
 
+        
+        @GetMapping({ "/desarrollo/verProyectos" })
+        public String verProyectos(Map<String, Object> model) {
+		
+            model.put("proyectos", proyectoDao.findAll());
+            return "desarrollador/verProyectos";
+        } 
+        
 	@GetMapping({ "/desarrollo/modificarProyecto" })
 	public String modificarProyecto(Map<String, Object> model) {
 
@@ -149,6 +157,13 @@ public class DesarrolladorController {
 
 	}
 
+        @GetMapping({ "/desarrollo/verTareas" })
+        public String verTareas(Map<String, Object> model) {
+		
+            model.put("tareas", tareaDao.findAll());
+            return "desarrollador/verTareas";
+        } 
+        
 	@GetMapping({ "/desarrollo/crearTarea" })
 	public String crearTarea(Map<String, Object> model) {
 		Tarea tarea = new Tarea();

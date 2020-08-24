@@ -85,7 +85,7 @@ public class TareaDaoImpl implements ITareaDao {
 			
                     for(int i = 0 ; i < tarea.size();i++){
                         tarea.get(i).setCodLineaBase(" ");
-                        tarea.get(i).setEstado("desbloqueado");                       
+                        tarea.get(i).setEstado("FINALIZADO");                       
                         em.merge(tarea.get(i));
                         
                     }    
