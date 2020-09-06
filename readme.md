@@ -1,4 +1,9 @@
 #gestion de proyecto Is2
+#LISTA DE INTEGRANES
+*Ruth Almirón
+*Rodrigo Adorno
+*Sergio Benegas
+*Justo Almirón
 # El proyecto se encuentra en la carpeta proyectoIs2
 #Entrega_01: 08/03 Login + Dashboard inicial
 * permite ingresar al sistema desde la pantalla de login
