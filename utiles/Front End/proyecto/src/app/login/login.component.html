@@ -1,0 +1,35 @@
+ 
+
+<div class="page-header" >
+    <h1>Gestion de Proyectos <small>Bienvenido </small></h1>
+  </div>
+<div class="container">  
+     
+    <form rol="form" [formGroup]="miFormulario ">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Usuario: </label> 
+            <input placeholder="Ingrese Usuario" 
+            [class.is-invalid]="miFormulario.get('username').touched && miFormulario.get('username').invalid"
+            type="text" 
+            class="form-control"
+            formControlName="username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Password: </label> 
+            <input placeholder="Ingrese Contraseña"
+            [class.is-invalid]="miFormulario.get('userpassword').touched && miFormulario.get('userpassword').invalid"
+            type="password" 
+            class="form-control"
+            formControlName="userpassword"
+        ><br/> 
+        </div>    
+        
+            <button onclick="location.href= '/home' "
+            class="btn btn-primary" 
+            type="submit">
+            Ingresar</button>
+         
+    </form>
+    <div class="container">
+        <router-outlet></router-outlet>
+        </div> 

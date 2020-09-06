@@ -1,0 +1,75 @@
+
+  .wrap{
+  	width: 60%;
+  	padding: 40px;
+  	margin:auto;
+  	background:transparent;
+  	box-shadow: 5px 5px 20px grey;
+  	color: #145DC7;
+  	font: bold 20px Helvetica, Sans-Serif;
+  }
+  
+  .contenedor{
+  	width: 100%;
+  	padding: 150px;
+  }
+  
+
+  body {
+    background-image: url(/img/img4.jpg); 
+    background-color: #afd6ec;
+    height: 500px; 
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+  }
+  
+   .boton{
+    display:block;
+    width: 400px;
+    height: 50px;
+    padding: 25px 0 40px 0;
+    margin: 50px 40px 10px 0px;
+    cursor: pointer;
+    background:transparent;
+    border: 2px solid #1a77e2;
+    border-radius: 10px;
+ 
+    font: bold 20px Helvetica, Sans-Serif;
+    text-align: center;
+    text-decoration: none;
+    color: #1a77e2;
+  }
+  .boton:hover{
+    color: #fff8f8;
+    background-color:#1a77e2;
+    border: none;
+  }
+  
+  /*-----------------------------------------------------------------------------------------------------*/
+  
+  .contenido-gral{
+    position: relative;
+    height:600px;
+  }
+  .botones-home{
+    bottom: 0; 
+    position: absolute;  
+    margin: 100px 450px;
+    
+  }
+  
+   .botones-administrativo{
+    bottom: 100px; 
+    position: absolute;  
+    margin: 100px 450px;
+    
+  }
+  
+  .titulo{
+  	font: bold 40px Helvetica, Sans-Serif;
+  	text-align: center;
+  	color: #1a77e2;
+  	line-height:100px;
+  
+  }

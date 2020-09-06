@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <!--BOOTSTRAP-->
+	 <link rel="stylesheet"
+		 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+	 <!--CUSTOM CSS-->
+	 <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+	 <title>Asignar Rol a Usuarios</title> 
+</head>
+<body>
+	<!--SE ESPECIFICAN LOS ERRORES-->
+	<section>
+        <div class="container text-light pt-3">
+			<h1 th:text="${error}"></h1>
+        </div>
+	</section>
+	<!--FORMULARIO-->
+	<div class="container py-5">
+		<div class="row justify-content-center pt-5 mt-5 mr-1">
+			<div class="col-lg-6">
+				<div class="form-group text-light text-center">
+					<h3>ASIGNAR ROL</h3>
+					<p>Debe ingresar el usuario y asignarle un rol de acuerdo al codigo.</p>
+				</div>
+				<form class="formulario mt-5" th:action="@{/app/administrativo/asignarRol}" th:number = ${usuario} method="post">
+					<div class="form-group pt-3">
+						<p>Usuario :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input placeholder="Ingrese Usuario" class="form-control text-light" type="text" th:field= "*{usuario.userCode}" name="usuario" size="18" />
+					</div>
+					<div class="form-group pb-3">
+						<p>Codigo de Rol :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input placeholder="Ingrese Codigo del Rol" class="form-control text-light" type="text" th:field= "*{usuario.nombreRol}" name="usuario" size="18" />
+						</p>
+					</div>
+					<div class="form-group">
+						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" class="btn btn-secondary btn-block"value="Asignar"> 
+						</p> 
+					</div>
+					<input class="btn btn-block btn-primary"type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+	

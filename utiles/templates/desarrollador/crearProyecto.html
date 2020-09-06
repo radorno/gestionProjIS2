@@ -1,0 +1,62 @@
+<head>
+ 	<title>Creacion de Proyectos</title> 
+	 <link href="../../static/css/estilo.css" th:href="@{/css/estilo.css}" rel="stylesheet" />
+</head>
+<body>
+	<center> 
+	<br>
+	<font color="#145DC7">
+	<h1 th:text="${error}">Crear Proyecto</h1> 
+	</font>
+	</center> <br>
+	<table border ="3" align="center" width="25%" >
+     <tr>
+       <td width="5000%">
+		<blockquote>
+		<center>
+		<p> <img src=../../static/img/user.png th:src="@{/img/user.png}" width="30" height="30"/>
+		<font color="#145DC7">
+		<b>Favor complete los campos</b> </p> 
+		</font>
+		</center>
+		</blockquote>
+		<p><br>
+	   </td>
+     </tr>
+	 <tr>
+	  <td>
+		<form th:action="@{/app/desarrollo/crearProyecto}"  th:object = ${proyecto} method="post">
+		 <center>
+		 <font color="#145DC7">
+		 <p>Codigo Proyecto : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text"  th:field= "*{codigoProyecto}" name="codigoProyecto"maxlength="12"/> </p> 
+		 <p>Admin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text"  th:field= "*{Admin}" name="Admin"/maxlength="12"/> </p> 
+		 <p>Fase : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="number"  th:field= "*{Fase}" name="Fase"/maxlength="12"/> </p> 
+		 <p>Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p> 
+		 <p>Estado :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select type="text"  name="estado" th:field= "*{estado}">
+			<option value="">                       </option>
+			<option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+			<option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+		 </select>
+		 <p>Fecha Inicio : &nbsp;&nbsp;&nbsp;
+		 <input type="Date"  th:field= "*{fechaInicio}" name="fechaInicio"/> </p> 
+		 <p>Fecha Fin : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+		 <input type="Date"   th:field= "*{fechaFin}" name="fechaFin"/> </p> 
+		 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="button" onclick="location.href='/app/desarrollo/gestionProyecto'" value="Atras" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <input type="submit" value="Guardar"> </p> 
+		 </center>
+		 </font>
+		<input type="hidden" th:field="*{id}"> 
+		</form>
+	  </td>
+	 </td>
+	</table>
+</body>
+
+	
