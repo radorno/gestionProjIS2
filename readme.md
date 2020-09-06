@@ -1,6 +1,6 @@
 #gestion de proyecto Is2
 #LISTA DE INTEGRANES
-*Ruth Almirón
+*Ruth Maidana
 *Rodrigo Adorno
 *Sergio Benegas
 *Justo Almirón
