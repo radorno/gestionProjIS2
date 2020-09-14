@@ -18,8 +18,7 @@
             <div class="col-md-4 formulario">
                 <form rol="form" [formGroup]="miFormulario" th:action="@{/app/index}"  th:object = ${usuario} method="post"> 
                     <div class="form-group pt-5">
-                    <!-- No recupera la imagen -->
-                        <img th:src="@{../static/img/user.png}" class="avatar" />
+                        <img class="avatar" th:src="@{/img/user.png}"  />
                     </div>
                     <div class="form-group text-light text-center">
                         <h2>LOGIN</h2>

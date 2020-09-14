@@ -166,7 +166,7 @@ public class GestionController {
 			return "gestion/agregar_tarea_lb";
 		} else {
                         tarea.setCodLineaBase(tareaNuevo.getCodLineaBase());
-                        tarea.setEstado("bloqueado");
+                        tarea.setEstado("BLOQUEADO");
                         tareaDao.save(tarea);
 			model.put("error", "Tarea Bloqueada en Linea Base con exito");
 			
