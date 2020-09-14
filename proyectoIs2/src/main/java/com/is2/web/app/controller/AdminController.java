@@ -20,6 +20,7 @@ import com.is2.web.app.models.dao.IRolDao;
 import com.is2.web.app.models.dao.IUsuarioDao;
 import com.is2.web.app.models.entity.Rol;
 import com.is2.web.app.models.entity.Usuario;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/app")
@@ -50,7 +51,8 @@ public class AdminController {
 			model.put("error","");
 			return "administrador/crearUsuarios";
 		}
-		
+                
+               
 		@RequestMapping(value="/administrativo/crearUsuarios", method=RequestMethod.POST)       
 		public String guardarUsuario(@Valid Usuario usuario, BindingResult result, Model model,Map<String, Object> models){
 
@@ -78,37 +80,70 @@ public class AdminController {
 			}
 		}
 		
-		@RequestMapping(value="/administrativo/modificarUsuario", method=RequestMethod.POST)
-		public String modificarUsuario(Usuario usuarioNuevo, Map<String, Object> model, Model models) {
-			
+		@GetMapping({"/administrativo/modificarUsuario/{userCode}"})       
+		public String modificarUsuario(@PathVariable("userCode") String userCode,Map<String, Object> model){
 			Usuario usuario = null;
-			usuario = usuarioDao.findUser(usuarioNuevo.getUserCode());
-			if(usuario == null) {
-				models.addAttribute("error","error Usuario no existe" );
-				return "administrador/modificarUsuario";
-			}else {
-			
+                        usuario = usuarioDao.findUser(userCode);
 			model.put("roles",rolDao.findAll());
-			model.put("usuario", usuario);
+			model.put("usuario",usuario);
 			model.put("error","");
-			
-			return "administrador/crearUsuarios";
-			}
-		}
-		
-		@GetMapping({"/administrativo/modificarUsuario"})       
-		public String modificarUsuario(Map<String, Object> model){
-			Usuario usuarioNuevo= new Usuario();
-			model.put("usuario",usuarioNuevo);
 			return "administrador/modificarUsuario";
 		}
-	
-                @GetMapping({ "/administrativo/verUsuarios" })
-                public String verUsuarios(Map<String, Object> model) {
 		
-		model.put("usuarios", usuarioDao.findAll());
-		return "administrador/verUsuarios";
+                @RequestMapping(value="/administrativo/modificarUsuario", method=RequestMethod.POST)       
+		public String modificarUsuario(@Valid Usuario usuario, BindingResult result, Model model,Map<String, Object> models){
+
+			if(result.hasErrors()) {
+				model.addAttribute("error","error volver a cargar campos" );
+				models.put("roles",rolDao.findAll());
+				return "administrador/modificarUsuario";
+			}
+			
+			
+			if( usuarioDao.findUser(usuario.getUserCode()) != null ) {
+				
+				if (usuario.getId() == 0) {
+					model.addAttribute("error","error usuario ya existe dentro de la base de datos" );
+					models.put("roles",rolDao.findAll());
+					return "administrador/modificarUsuario";
+					} else {
+						usuarioDao.save(usuario);
+                                                model.addAttribute("usuarios",usuarioDao.findAll());
+						return  "administrador/verUsuarios";
+					}
+			}else {
+			
+			usuarioDao.save(usuario);
+                        model.addAttribute("usuarios",usuarioDao.findAll());
+			return "administrador/verUsuarios";
+			}
+		}
+                
+                @GetMapping({"/administrativo/modificarUsuarios"})       
+		public String modificarUsuario(Map<String, Object> model){
+			Usuario usuario = new Usuario();
+			
+			model.put("roles",rolDao.findAll());
+			model.put("usuario",usuario);
+			model.put("error","");
+			return "administrador/modificarUsuarios";
+		}
+                
+                @GetMapping({"/administrativo/eliminarUsuario/{userCode}"})       
+		public String eliminarUsuario(@PathVariable("userCode") String userCode, Map<String, Object> model,Model models){
+			Usuario usuario = usuarioDao.findUser(userCode);
+			usuarioDao.removeUsuario(usuario);
+			models.addAttribute("usuarios",usuarioDao.findAll());
+			return "administrador/verUsuarios";
+		}
+                
+                @GetMapping({ "/administrativo/verUsuarios" })
+                public String verUsuarios(Model model) {
+		
+                    model.addAttribute("usuarios", usuarioDao.findAll());
+                    return "administrador/verUsuarios";
                 } 
+              
 		
 		@GetMapping({"/administrativo/gestionUsuario"})       
 		public String gestionUsuario(Model model){
@@ -187,13 +222,14 @@ public class AdminController {
 			return "administrador/modificarRoles";
 		}
 		
-		@GetMapping({"/administrativo/asignarRol"})       
-		public String asignarRol(Map<String, Object> model){
-			Usuario usuario = new Usuario();
+		@GetMapping({"/administrativo/asignarRol/{userCode}"})       
+		public String asignarRol(@PathVariable("userCode") String userCode, Map<String, Object> model){
+			Usuario usuario = usuarioDao.findUser(userCode);
 			
-		
+                        model.put("roles",rolDao.findAll());
 			model.put("usuario",usuario);
 			model.put("error","");
+                        model.put("title","Asignar Rol a Usuario : "+ usuario.getUserCode());
 			return "administrador/asignarRol";
 		}
 		
@@ -214,7 +250,8 @@ public class AdminController {
 			usuario.setNombreRol(usuarioNuevo.getNombreRol());	
 			model.put("error","Rol asignado con exito");
 			usuarioDao.save(usuario);
-			return "administrador/asignarRol";
+                        models.addAttribute("usuarios",usuarioDao.findAll());
+			return "administrador/verUsuarios";
 			}
 		}
 		

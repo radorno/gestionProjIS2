@@ -29,7 +29,10 @@
                                                 <th>Nombre</th>
                                                 <th>Apellido</th>
                                                 <th>UserCode</th>
-                                                <th>Rol</th>             
+                                                <th>Rol</th>  
+                                                <th>Modificar</th> 
+                                                <th>AsignarRol</th> 
+                                                <th>Eliminar Usuario</th> 
                                             </tr>
                                         </thead>
                                     <div th:each="user :${usuarios}">
@@ -40,6 +43,9 @@
                                         	<td th:text="${user.apellido}"></td>
                                         	<td th:text="${user.userCode}"></td>
                                         	<td th:text="${user.nombreRol}"></td>
+                                                <td><a th:href="@{/app/administrativo/modificarUsuario/{userCode}(userCode=${user.userCode})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                                <td><a th:href="@{/app/administrativo/asignarRol/{userCode}(userCode=${user.userCode})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                                <td><a th:href="@{/app/administrativo/eliminarUsuario/{userCode}(userCode=${user.userCode})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                         </tr> 
                                     </div>
                             </tbody>

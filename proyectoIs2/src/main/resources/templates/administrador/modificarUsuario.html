@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
- 	<!--BOOTSTRAP-->
+	 <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <title>Creacion de Usuarios</title> 
+	 <!--BOOTSTRAP-->
 	 <link rel="stylesheet"
 		 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 		 crossorigin="anonymous">
-	 <!--FONT AWESOME-->
-	 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-	 <!--CUSTOM CSS-->
- 	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-	 <title>Modificacion de Usuarios</title> 
+	<link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	
 </head>
 <body>
 	<!--SE ESPECIFICAN LOS ERRORES-->
 	<section>
-		<div class="container text-light pt-3">
+        <div class="container text-light pt-3">
 			<h1 th:text="${error}"></h1>
-		</div>
-	</section> 
+        </div>
+	</section>	
 	<!--FORMULARIO-->
 	<div class="container py-5">
-		<div class="row justify-content-center pt-5 mt-5 mr-1">
-			<div class="col-lg-6">
+        <div class="row justify-content-center pt-5 mt-5 mr-1">
+            <div class="col-lg-6">
 				<div class="form-group text-light text-center">
 					<h3>MODIFICAR USUARIO</h3>
-					<p>Debe ingresar el userCode a buscar para modificar el usuario.</p>
+					<p>Debe ingresar los datos del usuario a modificar para luego ser guardado en la base de datos</p>
 				</div>
-				<form class="formulario mt-5" th:action="@{/app/administrativo/modificarUsuario}" th:number = ${usuario} method="post">
-					<!--Buscar por usuario-->
-					<div class="input-group pt-5 mb-3">
-						<div class="input-group-prepend">
-							<i class="fas fa-user input-group-text"></i>
+				<form class="formulario mt-5" th:action="@{/app/administrativo/modificarUsuario}" th:object = ${usuario} method="post">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<p>Nombres: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese Nombre" class="form-control text-light" type="text" th:field= "*{nombre}" name="nombre"maxlength="20"/> </p> 
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"  ></p>
 						</div>
-						<input placeholder="Ingrese usuario" class="form-control text-light" type="text" th:field= "*{usuario.userCode}" name="usuario" size="18" />
+						<div class="form-group col-md-6">
+							<p>Apellidos: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input placeholder="Ingrese Apellido" class="form-control text-light" type="text" th:field= "*{apellido}" name="apellido"maxlength="20"/> </p> 
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:erros="*{apellido}"  ></p>
+						</div>
+					</div>	
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<p>UserCode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input placeholder="Ingrese el Codigo" class="form-control text-light" type="text" th:field= "*{userCode}" name="code"maxlength="20"/> </p> 
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('userCode')}" th:erros="*{userCode}"  ></p>
+						</div>
+						<div class="form-group col-md-6">
+							<p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<select  class="form-control text-light" name="Roles" th:field= "*{nombreRol}">
+								   <option value="">Seleccione una opcion</option>
+								   <option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
+								</select>
+							</p>	
+						</div>	
 					</div>
-					<div class="form-group pb-3">
+					<div class="form-group">
+						<p>Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						<input placeholder="Ingrese Password" class="form-control text-light" type="password" th:field= "*{password}" name="pass"/> </p> 
+						<p class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:erros="*{password}"  ></p>
+					</div>
+					<div class="form-group">
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-secondary" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" /> </p>
+						<input class="btn btn-secondary btn-block"type="submit" value="Guardar"> </p> 
+						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/verUsuarios'" value="Atras" />
+                                                <input type="hidden" th:field="*{id}"> 
 					</div>
-				</form>
+				</form>	   
 			</div>
-		</div>
-	</div>
+        </div>
+    </div>
 
 </body>
 

@@ -1,5 +1,6 @@
 package com.is2.web.app.models.dao;
 
+
 import java.util.List;
 
 import com.is2.web.app.models.entity.Usuario;
@@ -17,4 +18,6 @@ public interface IUsuarioDao {
 	public Usuario findUser(String userCode);
 	
 	public void updateRol(Usuario usuario);
+        
+        public void removeUsuario(Usuario usuario);
 }

@@ -1,5 +1,6 @@
 package com.is2.web.app.models.dao;
 
+import com.is2.web.app.models.entity.LineaBase;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +103,12 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 		
 	}
 
-	
+        @Override
+        @Transactional
+        public void removeUsuario(Usuario usuario) {
+            Usuario u = em.find(Usuario.class, usuario.getId());
+            System.out.println(usuario.getId());
+            em.remove(u);
+        }	
 
 }
