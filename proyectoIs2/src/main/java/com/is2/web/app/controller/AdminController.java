@@ -243,29 +243,6 @@ public class AdminController {
 			
 		}
                 
-		@RequestMapping(value="/administrativo/modificarRoles", method=RequestMethod.POST)
-		public String modificarRoles(Rol rolNuevo, Map<String, Object> model,Model models) {
-			Rol rol = null;
-			rol = rolDao.findRol(rolNuevo.getNombreRol());
-			if(rol == null) {
-				models.addAttribute("error","error Rol no existe" );
-				return "administrador/modificarRoles";
-			}else {
-			
-			model.put("rol", rol);
-			model.put("error","");
-			
-			return "administrador/crearRoles";
-			}
-			
-		}
-		
-		@GetMapping({"/administrativo/modificarRoles"})       
-		public String modificarRoles(Map<String, Object> model){
-			Rol rolNuevo= new Rol();
-			model.put("rol",rolNuevo);
-			return "administrador/modificarRoles";
-		}
 		
 		@GetMapping({"/administrativo/asignarRol/{userCode}"})       
 		public String asignarRol(@PathVariable("userCode") String userCode, Map<String, Object> model){

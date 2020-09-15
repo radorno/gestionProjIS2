@@ -21,7 +21,7 @@
                 <!--div th:switch="${tareas}">
                     <h2 th:case="null">No hay tareas establecidas!</h2>
                     <div th:case="*"-->
-		        <h2 th:text="${message}"></h2>
+                        <h2>Lista de Tareas</h2>
                         <table class="table table-hover p-5">
                             <tbody>
                             		<thead>
@@ -34,8 +34,7 @@
                                                 <th>Observacion</th>
                                                 <th>Proyecto</th>
                                                 <th>Tarea Padre</th> 
-                                                <th>Linea Base</th>
-												<th>Asignar Tarea a Proyecto</th>
+                                                <th>Linea Base</th>             
                                             </tr>
                                         </thead>
                                     <div th:each="tar :${tareas}">
@@ -51,7 +50,6 @@
                                             <td th:text="${tar.codigoProyecto}"></td>
                                             <td th:text="${tar.tareaPadre}"></td>
                                             <td th:text="${tar.codLineaBase}"></td>
-											<td><a th:href="@{/app/desarrollo/asignarTarea/tarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                         </tr> 
                                     </div>
                             </tbody>

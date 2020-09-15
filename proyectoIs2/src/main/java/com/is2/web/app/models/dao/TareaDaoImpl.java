@@ -100,4 +100,33 @@ public class TareaDaoImpl implements ITareaDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @SuppressWarnings("inchecked")
+    @Transactional(readOnly = true)
+    @Override
+    public List<Tarea> findTareasLibres() {
+	List<Tarea> tarea;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM TAREAS WHERE CODIGO_PROYECTO = '' ", Tarea.class);
+		tarea = nativeQuery.getResultList();
+		if (!tarea.isEmpty()) {
+			return tarea;
+		} else {
+
+			return null;
+		}
+    }
+
+    @Override
+    public List<Tarea> findProyecto(String codigoProyecto) {
+        List<Tarea> tarea;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM TAREAS WHERE CODIGO_PROYECTO = :codigo", Tarea.class);
+		nativeQuery.setParameter("codigo", codigoProyecto);
+		tarea = nativeQuery.getResultList();
+		if (!tarea.isEmpty()) {
+			return tarea;
+		} else {
+
+			return null;
+		}
+    }
+
 }

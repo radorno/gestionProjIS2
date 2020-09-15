@@ -20,6 +20,8 @@ import com.is2.web.app.models.entity.Proyecto;
 import com.is2.web.app.models.entity.Rol;
 import com.is2.web.app.models.entity.Tarea;
 import com.is2.web.app.models.entity.Usuario;
+import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/app")
@@ -31,7 +33,7 @@ public class DesarrolladorController {
 	private ITareaDao tareaDao;
 	@Autowired
 	private IUsuarioDao usuarioDao;
-	
+	private String codeProyect;
 	@GetMapping({ "/desarrollo" })
 	public String menuDesarrollo() {
 		return "desarrollador/desarrollo";
@@ -57,7 +59,7 @@ public class DesarrolladorController {
 	}
 
 	@RequestMapping(value = "/desarrollo/crearProyecto", method = RequestMethod.POST)
-	public String guardarRoles(@Valid Proyecto proyecto, BindingResult result, Model model) {
+	public String guardarProyecto(@Valid Proyecto proyecto, BindingResult result, Model model) {
 	
 		Usuario usuario = new Usuario();
 		usuario = usuarioDao.findUser(proyecto.getAdmin());
@@ -91,6 +93,64 @@ public class DesarrolladorController {
 
 	}
 
+        @GetMapping({"/desarrollo/eliminarProyecto/{codigoProyecto}"})       
+        public String eliminarProyecto(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model,Model models){
+		Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
+		proyectoDao.removeProyecto(proyecto);
+		model.put("proyecto",proyectoDao.findAll());
+		return "desarrollador/verProyectos";
+	}
+        
+        @GetMapping({"/desarrollo/modificarProyecto/{codigoProyecto}"})       
+	public String modificarProyecto(@PathVariable("codigoProyecto") String codigoProyecto,Map<String, Object> model){
+		Proyecto proyecto = null;
+                proyecto = proyectoDao.findProyecto(codigoProyecto);
+		model.put("proyecto",proyecto);
+		model.put("error","");
+		return "desarrollador/modificarProyecto";
+	}
+        
+        
+        
+        
+        
+        
+        @RequestMapping(value = "/desarrollo/modificarProyecto", method = RequestMethod.POST)
+	public String modificarProyecto(@Valid Proyecto proyecto, BindingResult result, Model model,Map<String, Object> models) {
+	
+		Usuario usuario = new Usuario();
+		usuario = usuarioDao.findUser(proyecto.getAdmin());
+		if (result.hasErrors()) {
+			model.addAttribute("error", "error volver a cargar campos");
+			return "desarrollador/modificarProyecto";
+		}
+		
+		if(usuario == null){
+			model.addAttribute("error", "error Admin no existe en base de datos");
+			return "desarrollador/modificarProyecto";
+		}
+		
+
+		if (proyectoDao.findProyecto(proyecto.getCodigoProyecto()) != null) {
+
+			if (proyecto.getId() == 0) {
+				model.addAttribute("error", "error Proyecto ya existe dentro de la base de datos");
+				return "desarrollador/modificarProyecto";
+			} else {
+				proyectoDao.save(proyecto);
+				model.addAttribute("error", "Proyecto modificado con exito");
+				models.put("proyectos",proyectoDao.findAll());
+                                return "desarrollador/verProyectos";
+			}
+		} else {
+
+			proyectoDao.save(proyecto);
+			model.addAttribute("error", "Proyecto modificado con exito");
+			models.put("proyectos",proyectoDao.findAll());
+                        return "desarrollador/verProyectos";
+		}
+
+	}
         
         @GetMapping({ "/desarrollo/verProyectos" })
         public String verProyectos(Map<String, Object> model) {
@@ -99,30 +159,7 @@ public class DesarrolladorController {
             return "desarrollador/verProyectos";
         } 
         
-	@GetMapping({ "/desarrollo/modificarProyecto" })
-	public String modificarProyecto(Map<String, Object> model) {
 
-		Proyecto proyectoNuevo = new Proyecto();
-		model.put("proyecto", proyectoNuevo);
-		return "desarrollador/modificarProyecto";
-	}
-
-	@RequestMapping(value = "/desarrollo/modificarProyecto", method = RequestMethod.POST)
-	public String modificarProyecto(Proyecto proyectoNuevo, Map<String, Object> model, Model models) {
-		Proyecto proyecto = null;
-		proyecto = proyectoDao.findProyecto(proyectoNuevo.getCodigoProyecto());
-		if (proyecto == null) {
-			models.addAttribute("error", "error Proyecto no existe");
-			return "desarrollador/modificarProyecto";
-		} else {
-
-			model.put("proyecto", proyecto);
-			model.put("error", "");
-
-			return "desarrollador/crearProyecto";
-		}
-
-	}
 
 	@GetMapping({ "/desarrollo/modificarTarea" })
 	public String modificarTarea(Map<String, Object> model) {
@@ -164,6 +201,13 @@ public class DesarrolladorController {
             return "desarrollador/verTareas";
         } 
         
+        @GetMapping({ "/desarrollo/verTareas/proyecto/{codigoProyecto}" })
+        public String verTareas(@PathVariable("codigoProyecto") String codigoProyecto,Map<String, Object> model) {
+		
+            model.put("tareas", tareaDao.findProyecto(codigoProyecto));
+            return "desarrollador/verTareasProyecto";
+        } 
+        
 	@GetMapping({ "/desarrollo/crearTarea" })
 	public String crearTarea(Map<String, Object> model) {
 		Tarea tarea = new Tarea();
@@ -196,36 +240,31 @@ public class DesarrolladorController {
 		}
 
 	}
-
-	@GetMapping({ "/desarrollo/asignarTarea" })
-	public String asignarTarea(Map<String, Object> model) {
-		Tarea tarea = new Tarea();
-
-		model.put("tarea", tarea);
-		model.put("error", "");
+        
+ 	@GetMapping({ "/desarrollo/asignarTarea/{codigoProyecto}" })
+	public String asignarTarea(@PathVariable("codigoProyecto") String codigoProyecto,Map<String, Object> model) {
+		
+                codeProyect = codigoProyecto;
+                Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
+                model.put("tareas",tareaDao.findAll());
+                model.put("message","Asinar tarea a proyecto : "+ proyecto.getCodigoProyecto());
 		return "desarrollador/asignarTarea";
+                
+	}       
+        
+        @GetMapping({ "/desarrollo/asignarTarea/tarea/{codigoTarea}" })
+	public String asignarTareas(@PathVariable("codigoTarea") String codigoTarea,Map<String, Object> model) {
+		
+                Tarea tarea = tareaDao.findTarea(codigoTarea);
+                tarea.setCodigoProyecto(codeProyect);
+                tareaDao.save(tarea);
+                model.put("message","Tarea asignada con exito");
+                model.put("proyectos",proyectoDao.findAll());
+		return "desarrollador/verProyectos";
+                
 	}
 
-	@RequestMapping(value = "/desarrollo/asignarTarea", method = RequestMethod.POST)
-	public String asignarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
-
-		Tarea tarea = null;
-		Proyecto proyecto = null;
-		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
-		proyecto = proyectoDao.findProyecto(tareaNuevo.getCodigoProyecto());
-		if (tarea == null) {
-			models.addAttribute("error", "error Tarea no existe");
-			return "desarrollador/asignarTarea";
-		} else if (proyecto == null) {
-			models.addAttribute("error", "error Proyecto no existe");
-			return "desarrollador/asignarTarea";
-		} else {
-			tarea.setCodigoProyecto(tareaNuevo.getCodigoProyecto());
-			model.put("error", "Tarea asignada con exito");
-			tareaDao.save(tarea);
-			return "desarrollador/asignarTarea";
-		}
-	}
+        
 
 	@GetMapping({ "/desarrollo/conectarTarea" })
 	public String conectarTarea(Map<String, Object> model) {

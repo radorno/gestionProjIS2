@@ -14,5 +14,7 @@ public interface IProyectoDao {
 	public Proyecto findOne(long id);
 	
 	public Proyecto findProyecto(String codigoProyecto);
+        
+        public void removeProyecto(Proyecto proyecto);
 
 }

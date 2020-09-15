@@ -58,6 +58,14 @@ public class ProjectoDaoImpl implements IProyectoDao{
 		}
 		
 	}
+
+        @Override
+        @Transactional
+        public void removeProyecto(Proyecto proyecto) {
+            Proyecto p = em.find(Proyecto.class, proyecto.getId());
+            System.out.println(proyecto.getId());
+            em.remove(p);
+        }	
 	
 	
 
