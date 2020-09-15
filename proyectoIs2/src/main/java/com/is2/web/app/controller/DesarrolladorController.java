@@ -111,10 +111,6 @@ public class DesarrolladorController {
 	}
         
         
-        
-        
-        
-        
         @RequestMapping(value = "/desarrollo/modificarProyecto", method = RequestMethod.POST)
 	public String modificarProyecto(@Valid Proyecto proyecto, BindingResult result, Model model,Map<String, Object> models) {
 	
@@ -130,7 +126,7 @@ public class DesarrolladorController {
 			return "desarrollador/modificarProyecto";
 		}
 		
-
+                
 		if (proyectoDao.findProyecto(proyecto.getCodigoProyecto()) != null) {
 
 			if (proyecto.getId() == 0) {
@@ -159,40 +155,90 @@ public class DesarrolladorController {
             return "desarrollador/verProyectos";
         } 
         
-
-
-	@GetMapping({ "/desarrollo/modificarTarea" })
-	public String modificarTarea(Map<String, Object> model) {
-		Tarea tareaNuevo = new Tarea();
-		model.put("tarea", tareaNuevo);
+        @GetMapping({"/desarrollo/eliminarTarea/{codigoTarea}"})       
+        public String eliminarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model,Model models){
+		Tarea tarea = tareaDao.findTarea(codigoTarea);
+		tareaDao.removeTarea(tarea);
+		model.put("tareas",tareaDao.findAll());
+		return "desarrollador/verTareas";
+	}
+        
+        @GetMapping({"/desarrollo/modificarTarea/{codigoTarea}"})       
+	public String modificarTarea(@PathVariable("codigoTarea") String codigoTarea,Map<String, Object> model){
+		Tarea tarea = null;
+                tarea = tareaDao.findTarea(codigoTarea);
+		model.put("tarea",tarea);
+		model.put("error","");
 		return "desarrollador/modificarTarea";
 	}
-
-	@RequestMapping(value = "/desarrollo/modificarTarea", method = RequestMethod.POST)
-	public String modificarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
-		Tarea tarea = null;
-		Integer valid = 1;
-		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
-		if (tarea == null) {
-			models.addAttribute("error", "error Tarea no existe");
-
+        
+        @RequestMapping(value = "/desarrollo/modificarTarea", method = RequestMethod.POST)
+	public String modificarTarea(@Valid Tarea tarea, BindingResult result, Model model, Integer valid,Map<String, Object> models) {
+                Tarea tareaN = tareaDao.findTarea(tarea.getCodigoTarea());
+            
+		if (result.hasErrors()) {
+			model.addAttribute("error", "error volver a cargar campos");
 			return "desarrollador/modificarTarea";
+		}
+
+                if(!tareaN.getCodLineaBase().isEmpty()){
+                    model.addAttribute("error", "error Tarea bloqueada no puede modificarse");
+                    models.put("tarea",tarea);
+                    return "desarrollador/modificarTarea";
+                }
+                
+		if (tareaN != null) {
+			if (tareaN.getId() == 0) {
+				model.addAttribute("error", "error Tarea ya existe dentro de la base de datos");
+				return "desarrollador/modificarTarea";
+			} else {
+				tareaDao.save(tareaN);
+				
+                                models.put("tareas",tareaDao.findAll());
+                                return "desarrollador/verTareas";
+			}
 		} else {
-                   
-                    if(tarea.getEstado().equals("BLOQUEADO")){
-			models.addAttribute("error", "error Tarea bloqueada no modificable");
-			return "desarrollador/modificarTarea";
-                    }else{
-                        model.put("tarea", tarea);
-			model.put("valid", valid);
-			model.put("error", "");
 
-			return "desarrollador/crearTarea";
-                    
-                    }    
+			tareaDao.save(tareaN);
+			
+                        models.put("tareas",tareaDao.findAll());
+                        return "desarrollador/verTareas";
 		}
 
 	}
+
+//	@GetMapping({ "/desarrollo/modificarTarea" })
+//	public String modificarTarea(Map<String, Object> model) {
+//		Tarea tareaNuevo = new Tarea();
+//		model.put("tarea", tareaNuevo);
+//		return "desarrollador/modificarTarea";
+//	}
+//
+//	@RequestMapping(value = "/desarrollo/modificarTarea", method = RequestMethod.POST)
+//	public String modificarTarea(Tarea tareaNuevo, Map<String, Object> model, Model models) {
+//		Tarea tarea = null;
+//		Integer valid = 1;
+//		tarea = tareaDao.findTarea(tareaNuevo.getCodigoTarea());
+//		if (tarea == null) {
+//			models.addAttribute("error", "error Tarea no existe");
+//
+//			return "desarrollador/modificarTarea";
+//		} else {
+//                   
+//                    if(tarea.getEstado().equals("BLOQUEADO")){
+//			models.addAttribute("error", "error Tarea bloqueada no modificable");
+//			return "desarrollador/modificarTarea";
+//                    }else{
+//                        model.put("tarea", tarea);
+//			model.put("valid", valid);
+//			model.put("error", "");
+//
+//			return "desarrollador/crearTarea";
+//                    
+//                    }    
+//		}
+//
+//	}
 
         @GetMapping({ "/desarrollo/verTareas" })
         public String verTareas(Map<String, Object> model) {
@@ -240,6 +286,7 @@ public class DesarrolladorController {
 		}
 
 	}
+        
         
  	@GetMapping({ "/desarrollo/asignarTarea/{codigoProyecto}" })
 	public String asignarTarea(@PathVariable("codigoProyecto") String codigoProyecto,Map<String, Object> model) {

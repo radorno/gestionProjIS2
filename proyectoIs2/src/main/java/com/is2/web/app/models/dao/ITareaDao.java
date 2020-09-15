@@ -25,4 +25,6 @@ public interface ITareaDao {
     public void desbloquearTarea(String codLineaBase);
         
     public void bloquearTarea(String codLineaBase);
+    
+    public void removeTarea(Tarea tarea);
 }

@@ -128,5 +128,14 @@ public class TareaDaoImpl implements ITareaDao {
 			return null;
 		}
     }
+    
+    @Override
+    @Transactional
+    public void removeTarea(Tarea tarea) {
+        Tarea t = em.find(Tarea.class, tarea.getId());
+        System.out.println(tarea.getId());
+        em.remove(t);
+    }	
+
 
 }
