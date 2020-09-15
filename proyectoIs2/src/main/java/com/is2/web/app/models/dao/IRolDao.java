@@ -15,5 +15,7 @@ public interface IRolDao {
 	public Rol findOne(long id);
 	
 	public Rol findRol(String nombreRol);
+        
+        public void removeRol(Rol rol);
 }
 

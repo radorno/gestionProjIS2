@@ -27,7 +27,9 @@
                             		<thead>
                                             <tr class="bg-dark text-white">
                                                 <th>Nombre</th>
-                                                <th>Descripcion</th>            
+                                                <th>Descripcion</th> 
+                                                <th>Modificar</th> 
+                                                <th>Eliminar Rol</th> 
                                             </tr>
                                         </thead>
                                     <div th:each="rol :${roles}">
@@ -36,6 +38,9 @@
                                         <tr>  
                                         	<td th:text="${rol.nombreRol}"></td>
                                         	<td th:text="${rol.descripcion}"></td>
+                                                <td><a th:href="@{/app/administrativo/modificarRol/{nombreRol}(nombreRol=${rol.nombreRol})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                                <td><a th:href="@{/app/administrativo/eliminarRol/{nombreRol}(nombreRol=${rol.nombreRol})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                                
                                         </tr> 
                                     </div>
                             </tbody>

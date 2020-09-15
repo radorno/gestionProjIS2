@@ -55,6 +55,14 @@ public class RolDaoImpl implements IRolDao  {
 			return null;
 		}
 	}
+
+    @Override
+    @Transactional
+    public void removeRol(Rol rol) {
+        Rol r = em.find(Rol.class, rol.getId());
+        System.out.println(rol.getId());
+        em.remove(r);
+    }
 	
 	
 	

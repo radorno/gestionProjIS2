@@ -197,7 +197,52 @@ public class AdminController {
 		model.put("roles", rolDao.findAll());
 		return "administrador/verRoles";
                 } 
-		
+                
+		@GetMapping({"/administrativo/eliminarRol/{nombreRol}"})       
+		public String eliminarRol(@PathVariable("nombreRol") String nombreRol, Map<String, Object> model,Model models){
+			Rol rol = rolDao.findRol(nombreRol);
+			rolDao.removeRol(rol);
+			model.put("roles", rolDao.findAll());
+			return "administrador/verRoles";
+		}
+                
+                @GetMapping({"/administrativo/modificarRol/{nombreRol}"})       
+		public String modificarRol(@PathVariable("nombreRol") String nombreRol,Map<String, Object> model){
+			Rol rol = null;
+                        rol = rolDao.findRol(nombreRol);
+			model.put("rol",rol);
+			model.put("error","");
+			model.put("roles", rolDao.findAll());
+			return "administrador/modificarRol";
+		}
+                
+                @RequestMapping(value="/administrativo/modificarRol", method=RequestMethod.POST)       
+		public String modificarRol(@Valid Rol rol, BindingResult result, Model model,Map<String, Object> models){
+			
+			if(result.hasErrors()) {
+				model.addAttribute("error","error volver a cargar campos" );
+				return "administrador/modificarRol";
+			}
+			
+			if( rolDao.findRol(rol.getNombreRol()) != null ) {
+				if (rol.getId() == 0) {
+				model.addAttribute("error","error Rol ya existe dentro de la base de datos" );
+				return "administrador/modificarRol";
+				} else {
+					rolDao.save(rol);
+                                        models.put("roles", rolDao.findAll());
+                                        return "administrador/verRoles";
+				}
+			}else {
+			
+				rolDao.save(rol);
+                                models.put("roles", rolDao.findAll());
+                                return "administrador/verRoles";
+			}
+			
+			
+		}
+                
 		@RequestMapping(value="/administrativo/modificarRoles", method=RequestMethod.POST)
 		public String modificarRoles(Rol rolNuevo, Map<String, Object> model,Model models) {
 			Rol rol = null;
