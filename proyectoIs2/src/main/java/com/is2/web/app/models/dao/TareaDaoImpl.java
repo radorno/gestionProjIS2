@@ -137,5 +137,19 @@ public class TareaDaoImpl implements ITareaDao {
         em.remove(t);
     }	
 
+    @Override
+    public List<Tarea> findTareasPadre(String codigoTarea) {
+         List<Tarea> tarea;
+		Query nativeQuery = em.createNativeQuery("SELECT * FROM TAREAS WHERE CODIGO_TAREA != :codigo  AND (TAREA_PADRE = '' OR TAREA_PADRE IS NULL)", Tarea.class);
+		nativeQuery.setParameter("codigo", codigoTarea);
+		tarea = nativeQuery.getResultList();
+		if (!tarea.isEmpty()) {
+			return tarea;
+		} else {
+
+			return null;
+		}
+    }
+
 
 }

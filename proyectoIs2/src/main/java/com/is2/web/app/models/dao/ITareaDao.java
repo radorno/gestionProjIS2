@@ -27,4 +27,6 @@ public interface ITareaDao {
     public void bloquearTarea(String codLineaBase);
     
     public void removeTarea(Tarea tarea);
+    
+    public List<Tarea> findTareasPadre(String codigoTarea);
 }
