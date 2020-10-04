@@ -32,7 +32,13 @@ public class IndexControllers {
             model.put("error", "");
             return "index";
         } else {
-            return "administrador/home";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "administrador/home";
+            }else{
+                return "administrador/homeDesa"; 
+            }
+
         }
     }
     
@@ -43,7 +49,7 @@ public class IndexControllers {
 
             model.put("usuario", usuario);
             model.put("error", "");
-            return "administrador/home";
+            return "index";
         } else {
             Usuario usuarioSesion = null;
             session.setAttribute("user",usuarioSesion);
@@ -56,11 +62,16 @@ public class IndexControllers {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String validarUsuario(@Valid Usuario usuario, BindingResult result, Model model, HttpSession session) {
+    public String validarUsuario(@Valid Usuario usuario, BindingResult result, Model model, HttpSession session,Map<String, Object> models) {
 
         if (usuarioDao.validarUser(usuario)) {
             session.setAttribute("user", usuarioDao.findUser(usuario.getUserCode()));
-            return "administrador/home";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "administrador/home";
+            }else{
+                return "administrador/homeDesa"; 
+            }
 
         } else {
             model.addAttribute("error", "Usuario invalido");

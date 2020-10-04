@@ -34,7 +34,13 @@ public class GestionController {
     @GetMapping({"/gestion"})
     public String menuGestion(HttpSession session, Map<String, Object> model) {
         if (session.getAttribute("user") != null) {
-            return "gestion/moduloGestion";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "gestion/moduloGestion";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -52,7 +58,13 @@ public class GestionController {
             LineaBase lineaBase = new LineaBase();
             model.put("lineaBase", lineaBase);
             model.put("error", "");
-            return "gestion/crearLineaBase";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "gestion/crearLineaBase";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -69,6 +81,7 @@ public class GestionController {
 
         if (result.hasErrors()) {
             model.addAttribute("error", "error volver a cargar campos");
+            
             return "gestion/crearLineaBase";
         }
 
@@ -94,7 +107,13 @@ public class GestionController {
     @GetMapping({"/gestion/listarlb"})
     public String menuLineaBase(Map<String, Object> model, HttpSession session) {
         if (session.getAttribute("user") != null) {
-            return "gestion/listarlb";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "gestion/listarlb";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -109,7 +128,13 @@ public class GestionController {
     public String verLineaBase(Map<String, Object> model, HttpSession session) {
         if (session.getAttribute("user") != null) {
             model.put("tareas", tareaDao.findAll());
-            return "gestion/listar_tareas";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "gestion/listar_tareas";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -125,7 +150,13 @@ public class GestionController {
         if (session.getAttribute("user") != null) {
             LineaBase lineaBaseNuevo = new LineaBase();
             model.put("lineaBase", lineaBaseNuevo);
-            return "/gestion/buscar_linea_base";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "/gestion/buscar_linea_base";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -161,7 +192,13 @@ public class GestionController {
             LineaBase lineaBaseAeliminar = new LineaBase();
             model.put("lineaBase", lineaBaseAeliminar);
             models.addAttribute("error", "");
-            return "/gestion/eliminarlb";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "/gestion/eliminarlb";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -197,7 +234,13 @@ public class GestionController {
 
             model.put("tarea", tarea);
             model.put("error", "");
-            return "gestion/agregar_tarea_lb";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if(user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")){
+                return "gestion/agregar_tarea_lb";
+            }else{
+                return null; 
+            }
+            
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -216,6 +259,7 @@ public class GestionController {
 
         if (tarea == null) {
             models.addAttribute("error", "error Tarea no existe");
+            
             return "gestion/agregar_tarea_lb";
         } else {
             tarea.setCodLineaBase(tareaNuevo.getCodLineaBase());

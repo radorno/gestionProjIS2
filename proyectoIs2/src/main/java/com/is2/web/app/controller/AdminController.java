@@ -35,7 +35,12 @@ public class AdminController {
     @GetMapping({"/home"})
     public String home(HttpSession session, Map<String, Object> model) {
         if (session.getAttribute("user") != null) {
-            return "administrador/home";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/home";
+            } else {
+                return "administrador/homeDesa";
+            }
         } else {
             Usuario usuario = new Usuario();
 
@@ -49,7 +54,13 @@ public class AdminController {
     @GetMapping({"/administrativo"})
     public String moduloAdministrativo(HttpSession session, Map<String, Object> model) {
         if (session.getAttribute("user") != null) {
-            return "administrador/administrativo";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/administrativo";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuario = new Usuario();
 
@@ -68,7 +79,13 @@ public class AdminController {
             model.put("roles", rolDao.findAll());
             model.put("usuario", usuario);
             model.put("error", "");
-            return "administrador/crearUsuarios";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/crearUsuarios";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -114,7 +131,13 @@ public class AdminController {
             model.put("roles", rolDao.findAll());
             model.put("usuario", usuario);
             model.put("error", "");
-            return "administrador/modificarUsuario";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/modificarUsuario";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -162,7 +185,13 @@ public class AdminController {
             model.put("roles", rolDao.findAll());
             model.put("usuario", usuario);
             model.put("error", "");
-            return "administrador/modificarUsuarios";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/modificarUsuarios";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -179,7 +208,13 @@ public class AdminController {
             Usuario usuario = usuarioDao.findUser(userCode);
             usuarioDao.removeUsuario(usuario);
             models.addAttribute("usuarios", usuarioDao.findAll());
-            return "administrador/verUsuarios";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/verUsuarios";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -194,7 +229,13 @@ public class AdminController {
     public String verUsuarios(Model model, HttpSession session, Map<String, Object> models) {
         if (session.getAttribute("user") != null) {
             model.addAttribute("usuarios", usuarioDao.findAll());
-            return "administrador/verUsuarios";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/verUsuarios";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -208,7 +249,13 @@ public class AdminController {
     @GetMapping({"/administrativo/gestionUsuario"})
     public String gestionUsuario(HttpSession session, Model model, Map<String, Object> models) {
         if (session.getAttribute("user") != null) {
-            return "administrador/gestionUsuario";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/gestionUsuario";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -222,7 +269,13 @@ public class AdminController {
     @GetMapping({"/administrativo/gestionRoles"})
     public String gestionRoles(HttpSession session, Model model, Map<String, Object> models) {
         if (session.getAttribute("user") != null) {
-            return "administrador/gestionRoles";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/gestionRoles";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -240,8 +293,13 @@ public class AdminController {
             Rol rol = new Rol();
             model.put("rol", rol);
             model.put("error", "");
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/crearRoles";
+            } else {
+                return null;
+            }
 
-            return "administrador/crearRoles";
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -281,7 +339,13 @@ public class AdminController {
     public String verRoles(Map<String, Object> model, HttpSession session) {
         if (session.getAttribute("user") != null) {
             model.put("roles", rolDao.findAll());
-            return "administrador/verRoles";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/verRoles";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -298,7 +362,13 @@ public class AdminController {
             Rol rol = rolDao.findRol(nombreRol);
             rolDao.removeRol(rol);
             model.put("roles", rolDao.findAll());
-            return "administrador/verRoles";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/verRoles";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -317,7 +387,13 @@ public class AdminController {
             model.put("rol", rol);
             model.put("error", "");
             model.put("roles", rolDao.findAll());
-            return "administrador/modificarRol";
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/modificarRol";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -356,15 +432,21 @@ public class AdminController {
     }
 
     @GetMapping({"/administrativo/asignarRol/{userCode}"})
-    public String asignarRol(@PathVariable("userCode") String userCode, Map<String, Object> model,HttpSession session) {
+    public String asignarRol(@PathVariable("userCode") String userCode, Map<String, Object> model, HttpSession session) {
         if (session.getAttribute("user") != null) {
-        Usuario usuario = usuarioDao.findUser(userCode);
+            Usuario usuario = usuarioDao.findUser(userCode);
 
-        model.put("roles", rolDao.findAll());
-        model.put("usuario", usuario);
-        model.put("error", "");
-        model.put("title", "Asignar Rol a Usuario : " + usuario.getUserCode());
-        return "administrador/asignarRol";
+            model.put("roles", rolDao.findAll());
+            model.put("usuario", usuario);
+            model.put("error", "");
+            model.put("title", "Asignar Rol a Usuario : " + usuario.getUserCode());
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user.getNombreRol().equals("Administrador") || user.getNombreRol().equals("Admin. y Desarrollador")) {
+                return "administrador/asignarRol";
+            } else {
+                return null;
+            }
+
         } else {
             Usuario usuarioSession = new Usuario();
 
@@ -373,7 +455,7 @@ public class AdminController {
             return "index";
 
         }
-        
+
     }
 
     @RequestMapping(value = "/administrativo/asignarRol", method = RequestMethod.POST)

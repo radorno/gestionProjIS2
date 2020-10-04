@@ -57,15 +57,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
 		if (!user.isEmpty()) {
 
-			if (user.get(0).getNombreRol().equals("Administrador")) {
-
-				return true;
-
-			} else {
-
-				return false;
-
-			}
+			return true;
 
 		} else {
 
