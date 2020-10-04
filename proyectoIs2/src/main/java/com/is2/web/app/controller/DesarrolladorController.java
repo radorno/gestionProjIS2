@@ -21,6 +21,7 @@ import com.is2.web.app.models.entity.Rol;
 import com.is2.web.app.models.entity.Tarea;
 import com.is2.web.app.models.entity.Usuario;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -35,27 +36,64 @@ public class DesarrolladorController {
     private IUsuarioDao usuarioDao;
     private String codeProyect;
     private String codeTarea;
+
     @GetMapping({"/desarrollo"})
-    public String menuDesarrollo() {
-        return "desarrollador/desarrollo";
+    public String menuDesarrollo(HttpSession session, Map<String, Object> model) {
+        if (session.getAttribute("user") != null) {
+            return "desarrollador/desarrollo";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/gestionProyecto"})
-    public String gestionProyecto(Model model) {
-        return "desarrollador/gestionProyecto";
+    public String gestionProyecto(HttpSession session, Map<String, Object> model) {
+        if (session.getAttribute("user") != null) {
+            return "desarrollador/gestionProyecto";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/gestionTarea"})
-    public String gestionTarea(Model model) {
-        return "desarrollador/gestionTarea";
+    public String gestionTarea(HttpSession session, Map<String, Object> model) {
+        if (session.getAttribute("user") != null) {
+            return "desarrollador/gestionTarea";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/crearProyecto"})
-    public String crearProyecto(Map<String, Object> model) {
-        Proyecto proyecto = new Proyecto();
-        model.put("proyecto", proyecto);
-        model.put("error", "");
-        return "desarrollador/crearProyecto";
+    public String crearProyecto(HttpSession session, Map<String, Object> model) {
+        if (session.getAttribute("user") != null) {
+            Proyecto proyecto = new Proyecto();
+            model.put("proyecto", proyecto);
+            model.put("error", "");
+            return "desarrollador/crearProyecto";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
 
     }
 
@@ -94,20 +132,38 @@ public class DesarrolladorController {
     }
 
     @GetMapping({"/desarrollo/eliminarProyecto/{codigoProyecto}"})
-    public String eliminarProyecto(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model, Model models) {
-        Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
-        proyectoDao.removeProyecto(proyecto);
-        model.put("proyecto", proyectoDao.findAll());
-        return "desarrollador/verProyectos";
+    public String eliminarProyecto(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model, Model models, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
+            proyectoDao.removeProyecto(proyecto);
+            model.put("proyecto", proyectoDao.findAll());
+            return "desarrollador/verProyectos";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/modificarProyecto/{codigoProyecto}"})
-    public String modificarProyecto(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model) {
-        Proyecto proyecto = null;
-        proyecto = proyectoDao.findProyecto(codigoProyecto);
-        model.put("proyecto", proyecto);
-        model.put("error", "");
-        return "desarrollador/modificarProyecto";
+    public String modificarProyecto(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Proyecto proyecto = null;
+            proyecto = proyectoDao.findProyecto(codigoProyecto);
+            model.put("proyecto", proyecto);
+            model.put("error", "");
+            return "desarrollador/modificarProyecto";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @RequestMapping(value = "/desarrollo/modificarProyecto", method = RequestMethod.POST)
@@ -147,39 +203,58 @@ public class DesarrolladorController {
     }
 
     @GetMapping({"/desarrollo/verProyectos"})
-    public String verProyectos(Map<String, Object> model) {
+    public String verProyectos(Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            model.put("proyectos", proyectoDao.findAll());
+            return "desarrollador/verProyectos";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-        model.put("proyectos", proyectoDao.findAll());
-        return "desarrollador/verProyectos";
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/eliminarTarea/{codigoTarea}"})
-    public String eliminarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, Model models) {
-        Tarea tarea = tareaDao.findTarea(codigoTarea);
-        tareaDao.removeTarea(tarea);
-        model.put("tareas", tareaDao.findAll());
-        return "desarrollador/verTareas";
+    public String eliminarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, Model models, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Tarea tarea = tareaDao.findTarea(codigoTarea);
+            tareaDao.removeTarea(tarea);
+            model.put("tareas", tareaDao.findAll());
+            return "desarrollador/verTareas";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/modificarTarea/{codigoTarea}"})
-    public String modificarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model) {
-        Tarea tarea = null;
-        tarea = tareaDao.findTarea(codigoTarea);
-        model.put("tarea", tarea);
-        model.put("error", "");
-        return "desarrollador/modificarTarea";
-    }
+    public String modificarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Tarea tarea = null;
+            tarea = tareaDao.findTarea(codigoTarea);
+            model.put("tarea", tarea);
+            model.put("error", "");
+            return "desarrollador/modificarTarea";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-  
-//        if(!tarea.getCodLineaBase().isEmpty()){
-//                    model.addAttribute("error", "error Tarea bloqueada no puede modificarse");
-//                    models.put("tarea",tarea);
-//                    return "desarrollador/modificarTarea";
-//                }
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
+
+    }
 
     @RequestMapping(value = "/desarrollo/modificarTarea", method = RequestMethod.POST)
     public String modificarTarea(@Valid Tarea tarea, BindingResult result, Model model, Integer valid, Map<String, Object> models) {
- 
 
         if (result.hasErrors()) {
             model.addAttribute("error", "error volver a cargar campos");
@@ -198,12 +273,12 @@ public class DesarrolladorController {
                 tareaNueva.setVersion(tarea.getVersion());
                 tareaNueva.setDescripcion(tarea.getDescripcion());
                 tareaNueva.setObservacion(tarea.getObservacion());
-                if(tareaNueva.getCodLineaBase() != null){
+                if (tareaNueva.getCodLineaBase() != null) {
                     model.addAttribute("error", "error Tarea bloqueada no puede modificarse");
-                    models.put("tarea",tarea);
+                    models.put("tarea", tarea);
                     return "desarrollador/modificarTarea";
                 }
-                
+
                 tareaDao.save(tareaNueva);
                 models.put("tareas", tareaDao.findAll());
                 return "desarrollador/verTareas";
@@ -216,12 +291,12 @@ public class DesarrolladorController {
             tareaNueva.setVersion(tarea.getVersion());
             tareaNueva.setDescripcion(tarea.getDescripcion());
             tareaNueva.setObservacion(tarea.getObservacion());
-                if(tareaNueva.getCodLineaBase() != null){
-                    model.addAttribute("error", "error Tarea bloqueada no puede modificarse");
-                    models.put("tarea",tarea);
-                    return "desarrollador/modificarTarea";
-                }
-            
+            if (tareaNueva.getCodLineaBase() != null) {
+                model.addAttribute("error", "error Tarea bloqueada no puede modificarse");
+                models.put("tarea", tarea);
+                return "desarrollador/modificarTarea";
+            }
+
             tareaDao.save(tareaNueva);
             models.put("tareas", tareaDao.findAll());
             return "desarrollador/verTareas";
@@ -230,26 +305,53 @@ public class DesarrolladorController {
     }
 
     @GetMapping({"/desarrollo/verTareas"})
-    public String verTareas(Map<String, Object> model) {
+    public String verTareas(Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            model.put("tareas", tareaDao.findAll());
+            return "desarrollador/verTareas";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-        model.put("tareas", tareaDao.findAll());
-        return "desarrollador/verTareas";
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
+
     }
 
     @GetMapping({"/desarrollo/verTareas/proyecto/{codigoProyecto}"})
-    public String verTareas(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model) {
+    public String verTareas(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            model.put("tareas", tareaDao.findProyecto(codigoProyecto));
+            return "desarrollador/verTareasProyecto";
 
-        model.put("tareas", tareaDao.findProyecto(codigoProyecto));
-        return "desarrollador/verTareasProyecto";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @GetMapping({"/desarrollo/crearTarea"})
-    public String crearTarea(Map<String, Object> model) {
-        Tarea tarea = new Tarea();
+    public String crearTarea(Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Tarea tarea = new Tarea();
 
-        model.put("tarea", tarea);
-        model.put("error", "");
-        return "desarrollador/crearTarea";
+            model.put("tarea", tarea);
+            model.put("error", "");
+            return "desarrollador/crearTarea";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
     }
 
     @RequestMapping(value = "/desarrollo/crearTarea", method = RequestMethod.POST)
@@ -279,54 +381,78 @@ public class DesarrolladorController {
     }
 
     @GetMapping({"/desarrollo/asignarTarea/{codigoProyecto}"})
-    public String asignarTarea(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model) {
+    public String asignarTarea(@PathVariable("codigoProyecto") String codigoProyecto, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            codeProyect = codigoProyecto;
+            Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
+            model.put("tareas", tareaDao.findAll());
+            model.put("message", "Asinar tarea a proyecto : " + proyecto.getCodigoProyecto());
+            return "desarrollador/asignarTarea";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-        codeProyect = codigoProyecto;
-        Proyecto proyecto = proyectoDao.findProyecto(codigoProyecto);
-        model.put("tareas", tareaDao.findAll());
-        model.put("message", "Asinar tarea a proyecto : " + proyecto.getCodigoProyecto());
-        return "desarrollador/asignarTarea";
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
 
+        }
     }
 
     @GetMapping({"/desarrollo/asignarTarea/tarea/{codigoTarea}"})
-    public String asignarTareas(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model) {
+    public String asignarTareas(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            Tarea tarea = tareaDao.findTarea(codigoTarea);
+            tarea.setCodigoProyecto(codeProyect);
+            tareaDao.save(tarea);
+            model.put("message", "Tarea asignada con exito");
+            model.put("proyectos", proyectoDao.findAll());
+            return "desarrollador/verProyectos";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-        Tarea tarea = tareaDao.findTarea(codigoTarea);
-        tarea.setCodigoProyecto(codeProyect);
-        tareaDao.save(tarea);
-        model.put("message", "Tarea asignada con exito");
-        model.put("proyectos", proyectoDao.findAll());
-        return "desarrollador/verProyectos";
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
 
+        }
     }
 
-    
-    
-    
     @GetMapping({"/desarrollo/conectarTarea/{codigoTarea}"})
-    public String conectarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model) {
+    public String conectarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {
+            codeTarea = codigoTarea;
+            Tarea tarea = tareaDao.findTarea(codigoTarea);
+            model.put("tareas", tareaDao.findTareasPadre(codigoTarea));
+            model.put("message", "Conectar tarea hija a tare Padre : " + tarea.getCodigoTarea());
+            return "desarrollador/conectarTarea";
+        } else {
+            Usuario usuarioSession = new Usuario();
 
-        codeTarea = codigoTarea;
-        Tarea tarea = tareaDao.findTarea(codigoTarea);
-        model.put("tareas", tareaDao.findTareasPadre(codigoTarea));
-        model.put("message", "Conectar tarea hija a tare Padre : " + tarea.getCodigoTarea());
-        return "desarrollador/conectarTarea";
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
 
+        }
     }
-    
-    @GetMapping({"/desarrollo/tarea/conectarTarea/{codigoTarea}"})
-    public String conectarTareas(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model) {
 
+    @GetMapping({"/desarrollo/tarea/conectarTarea/{codigoTarea}"})
+    public String conectarTareas(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") != null) {    
         Tarea tarea = tareaDao.findTarea(codeTarea);
         tarea.setTareaPadre(codigoTarea);
         tareaDao.save(tarea);
         model.put("message", "Tarea conectada con exito");
         model.put("tareas", tareaDao.findAll());
         return "desarrollador/verTareas";
+        } else {
+            Usuario usuarioSession = new Usuario();
+
+            model.put("usuario", usuarioSession);
+            model.put("error", "");
+            return "index";
+
+        }
 
     }
-    
-    
 
 }

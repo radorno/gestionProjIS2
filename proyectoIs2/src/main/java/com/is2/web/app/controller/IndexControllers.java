@@ -14,35 +14,60 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.is2.web.app.models.dao.IUsuarioDao;
 import com.is2.web.app.models.entity.Usuario;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/app")
 public class IndexControllers {
-	@Autowired
-	private IUsuarioDao usuarioDao;
 
-	@GetMapping({ "/index", "/" })
-	public String index(Map<String, Object> model) {
-		Usuario usuario = new Usuario();
+    @Autowired
+    private IUsuarioDao usuarioDao;
 
-		model.put("usuario", usuario);
-		model.put("error", "");
-		return "index";
-	}
+    @GetMapping({"/index", "/"})
+    public String index(Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            Usuario usuario = new Usuario();
 
-	@RequestMapping(value = "/index", method = RequestMethod.POST)
-	public String validarUsuario(@Valid Usuario usuario, BindingResult result, Model model) {
+            model.put("usuario", usuario);
+            model.put("error", "");
+            return "index";
+        } else {
+            return "administrador/home";
+        }
+    }
+    
+    @GetMapping({"/logout"})
+    public String logout(Map<String, Object> model, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            Usuario usuario = new Usuario();
 
-		if (usuarioDao.validarUser(usuario)) {
-			
-			return "administrador/home";
-			
-		} else {
-			model.addAttribute("error", "Usuario invalido");
-			return "index";
+            model.put("usuario", usuario);
+            model.put("error", "");
+            return "administrador/home";
+        } else {
+            Usuario usuarioSesion = null;
+            session.setAttribute("user",usuarioSesion);
+            Usuario usuario = new Usuario();
 
-		}
+            model.put("usuario", usuario);
+            model.put("error", "");
+            return "index";
+        }
+    }
 
-	}
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String validarUsuario(@Valid Usuario usuario, BindingResult result, Model model, HttpSession session) {
+
+        if (usuarioDao.validarUser(usuario)) {
+            session.setAttribute("user", usuarioDao.findUser(usuario.getUserCode()));
+            return "administrador/home";
+
+        } else {
+            model.addAttribute("error", "Usuario invalido");
+            return "index";
+
+        }
+
+    }
 
 }
