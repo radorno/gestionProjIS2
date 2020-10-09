@@ -46,9 +46,9 @@
 						</div>
 					</div>
 				   <div class="form-group">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-secondary" type="submit" value="Guardar"></p>
-						<input type="hidden" th:field="*{id}"> 
+					   	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input  type="hidden" th:field="*{id}"> 
+						<a th:href= "@{'/app/gestion/crearLineaBase/seleccionar_tareas/' + *{id}}" type="button" class="btn btn-block btn-primary"> Seleccionar Tarea </a></p>
 						<input onclick="location.href= '/app/gestion'" type="button" class="btn btn-block btn-primary" value="Atras" />	
 					</div>
 				</form>
