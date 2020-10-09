@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Tareas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+   <!--CUSTOM CSS-->
+   <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+  
+</head>
+<body>
+	<form th:action="@{/app/gestion/seleccionar_tareas}" method="post">
+		   <!--FORMULARIO-->
+    <div class="container py-5">
+        <div class="card ">
+            <div class="card-body">
+                <!--div th:switch="${Tarea}">
+                    <h2 th:case="null">No hay tareas establecidas!</h2>
+                    <div th:case="*"-->
+                        <h2>Lista de Tareas</h2> 
+                        <table class="table table-hover p-5">
+                            <tbody>
+                            		<thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>Tareas</th>
+                                                <th>Version</th>
+			                                    <th>Estado</th> 
+			                                    <th>Descripcion</th>
+			                                    <th>Seleccion</th>           
+                                            </tr>
+                                     </thead>
+                                    <div th:each="tar :${tareas}">
+                                        <tr>  
+                                        	<td th:text="${tar.codigoTarea}"></td>
+                                        	<td th:text="${tar.version}"></td>
+		                                    <td th:text="${tar.estado}"></td>
+		                                    <td th:text="${tar.descripcion}"></td>
+		                                    <td><input type="checkbox" th:name="selectedTareas" th:value="${tar.codigoTarea}"> Agregar </input></td>
+                                        </tr> 
+                                    </div>
+                            </tbody>
+                        </table>
+                    <!--/div>
+                </div-->
+            </div>
+        </div>
+    </div>
+	</form>
+  	<section class="container py-5">
+        <footer>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="btn btn-block btn-secondary" type="submit" value="Crear Linea Base"></p>	
+			<input onclick="location.href= '/app/gestion'" type="button" class="btn btn-block btn-primary" value="Atras" />
+        </footer>
+    </section>
+</body>
+</html>
