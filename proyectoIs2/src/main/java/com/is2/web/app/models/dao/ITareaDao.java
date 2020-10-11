@@ -29,4 +29,6 @@ public interface ITareaDao {
     public void removeTarea(Tarea tarea);
     
     public List<Tarea> findTareasPadre(String codigoTarea);
+    
+    public List<Tarea> findNoBloqueadas();
 }
