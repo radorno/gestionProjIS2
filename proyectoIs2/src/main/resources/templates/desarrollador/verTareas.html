@@ -35,7 +35,7 @@
                                                 <th>Proyecto</th>
                                                 <th>Tarea Padre</th> 
                                                 <th>Linea Base</th>  
-												<th>Modificar</th>
+						<th>Modificar</th>
                                                 <th>Eliminar Tarea</th> 
                                                 <th>Conectar Tarea</th>  
 												
@@ -54,9 +54,9 @@
                                             <td th:text="${tar.codigoProyecto}"></td>
                                             <td th:text="${tar.tareaPadre}"></td>
                                             <td th:text="${tar.codLineaBase}"></td>
-											<td><a th:href="@{/app/desarrollo/modificarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-											<td><a th:href="@{/app/desarrollo/eliminarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-											<td><a th:href="@{/app/desarrollo/conectarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+					    <td><a th:href="@{/app/desarrollo/modificarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+       					    <td><a th:href="@{/app/desarrollo/eliminarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+					    <td><a th:href="@{/app/desarrollo/conectarTarea/{codigoTarea}(codigoTarea=${tar.codigoTarea})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                         </tr> 
                                     </div>
                             </tbody>
