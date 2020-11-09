@@ -3,21 +3,47 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Modulo Gestion</title>
-	<link rel="stylesheet" href="/css/estilo.css">
+	 <!--CUSTOM CSS-->
+   <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<!--BOOTSTRAP-->
+    <link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		crossorigin="anonymous">
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-	<div class="contenido-gral">
-		<div class="page-header" >
-    		<h1 class="titulo">Bienvenido Usuario Administrador</h1>
-  		</div>
-  		<div class="btn-toolbar botones-home" role="toolbar">
-	    	<div class="btn-group">
-	        	<button onclick="location.href= '/app/gestion/crearLineaBase'" type="button" class="btn btn-outline-primary boton" >CREAR LINEA BASE</button>
-	        	<button onclick="location.href= '/app/gestion/eliminarlb'" type="button" class="btn btn-outline-primary boton">ELIMINAR LINEA BASE</button>
-	        	<button onclick="location.href= '/app/gestion/listarlb'" type="button" class="btn btn-outline-primary boton">LISTAR LINEA BASE</button>
-                        <button onclick="location.href= '/app/gestion/agregar_tarea_lb'" type="button" class="btn btn-outline-primary boton">AGREGAR TAREA</button>
-                </div>
-   		</div>
-	</div>
+	<nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <h3 class="titulo">Bienvenido Usuario Administrador</h3>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+						<div class="">
+							<i class="fas fa-user-tie"></i>
+							<button  onclick="location.href= '/app/home'" type="button" class="btn btn-outline-secondary">Atras</button>
+						</div>
+						
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</nav>
+	<section class="py-5">
+		<div class="mb-3 btn-toolbar botones-home" role="toolbar">
+			<div class="btn-group">
+				<button onclick="location.href= '/app/gestion/crearLineaBase'" type="button" class="boton2" >CREAR LINEA BASE</button>
+			</div>
+			<div class="btn-group">
+				<button onclick="location.href= '/app/gestion/eliminarlb'" type="button" class="boton2">ELIMINAR LINEA BASE</button>
+			</div>
+			<div class="btn-group">
+				<button onclick="location.href= '/app/gestion/listarlb'" type="button" class="boton2">LISTAR LINEA BASE</button>
+			</div>
+			<div class="btn-group">
+				<button onclick="location.href= '/app/gestion/agregar_tarea_lb'" type="button" class="boton2">AGREGAR TAREA</button>
+			</div>
+		</div>	
+	</section>
 </body>
 </html>

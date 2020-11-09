@@ -25,57 +25,59 @@
 					<br>
 					<p>Debe ingresar los datos del proyecto a ser creado.</p>
 				</div>
-				<form class="formulario mt-5" th:action="@{/app/desarrollo/crearProyecto}"  th:object = ${proyecto} method="post">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>Proyecto : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Codigo" class="form-control text-light" type="text"  th:field= "*{codigoProyecto}" name="codigoProyecto"maxlength="12"/> </p> 
+				<div class="letras">
+					<form class="formulario mt-5" th:action="@{/app/desarrollo/crearProyecto}"  th:object = ${proyecto} method="post">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>Proyecto : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese Codigo" class="form-control text-light" type="text"  th:field= "*{codigoProyecto}" name="codigoProyecto"maxlength="12"/> </p> 
+							</div>
+							<div class="form-group col-md-6">
+								<p>Admin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese Administrador" class="form-control text-light" type="text"  th:field= "*{Admin}" name="Admin"maxlength="12"/> </p> 
+							</div>
 						</div>
-						<div class="form-group col-md-6">
-							<p>Admin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Administrador" class="form-control text-light" type="text"  th:field= "*{Admin}" name="Admin"maxlength="12"/> </p> 
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>Fase : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese Fase" class="form-control text-light" type="number"  th:field= "*{Fase}" name="Fase"maxlength="12"/> </p> 
+							</div>
+							<div class="form-group col-md-6">
+								<p>Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese Descripcion"class="form-control text-light" type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p> 
+							</div>	
 						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>Fase : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Fase" class="form-control text-light" type="number"  th:field= "*{Fase}" name="Fase"maxlength="12"/> </p> 
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>Estado :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<select class="form-control text-light" type="text"  name="estado" th:field= "*{estado}">
+									   <option value="">Seleccione una opcion</option>
+									   <option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									   <option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									   <option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+									</select>
+								</p>
+							</div>
+					
 						</div>
-						<div class="form-group col-md-6">
-							<p>Descripcion:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Descripcion"class="form-control text-light" type="text" th:field= "*{descripcion}" name="desc" maxlength="50"/> </p> 
-						</div>	
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>Estado :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<select class="form-control text-light" type="text"  name="estado" th:field= "*{estado}">
-								   <option value="">Seleccione una opcion</option>
-								   <option value="Iniciado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iniciado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-								   <option value="Pendiente">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-								   <option value="Finalizado">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finalizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-								</select>
-							</p>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>Fecha Inicio : &nbsp;&nbsp;&nbsp;
+								<input class="form-control text-light" type="Date"  th:field= "*{fechaInicio}" name="fechaInicio"/> </p> 
+							</div>
+							<div class="form-group col-md-6">
+								<p>Fecha Fin : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+								<input class="form-control text-light" type="Date"   th:field= "*{fechaFin}" name="fechaFin"/> </p> 	
+							</div>	
 						</div>
-				
-					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>Fecha Inicio : &nbsp;&nbsp;&nbsp;
-							<input class="form-control text-light" type="Date"  th:field= "*{fechaInicio}" name="fechaInicio"/> </p> 
+					   <div class="form-group">
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="btn btn-block btn-secondary letras" type="submit" value="Guardar"> </p> 
+							<input type="hidden" th:field="*{id}"> 
+							<input class="btn btn-block btn-primary letras" type="button" onclick="location.href='/app/desarrollo/gestionProyecto'" value="Atras" />
 						</div>
-						<div class="form-group col-md-6">
-							<p>Fecha Fin : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-							<input class="form-control text-light" type="Date"   th:field= "*{fechaFin}" name="fechaFin"/> </p> 	
-						</div>	
-					</div>
-				   <div class="form-group">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-block btn-secondary" type="submit" value="Guardar"> </p> 
-						<input type="hidden" th:field="*{id}"> 
-						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/desarrollo/gestionProyecto'" value="Atras" />
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
         </div>
     </div>

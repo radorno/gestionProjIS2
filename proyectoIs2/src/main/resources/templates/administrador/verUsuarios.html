@@ -11,18 +11,19 @@
         crossorigin="anonymous">
    <!--CUSTOM CSS-->
    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-  
+   <!--FONTAWESOME-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
      <!--FORMULARIO-->
     <div class="container py-5">
-        <div class="card ">
+        <div class="card color">
             <div class="card-body">
                 <!--div th:switch="${usuarios}">
                     <h2 th:case="null">No hay usuarios establecidos!</h2>
                     <div th:case="*"-->
-                        <h2>Lista de usuarios</h2>
-                        <table class="table table-hover p-5">
+                        <h2 class="text-light">Lista de usuarios</h2>
+                        <table class="table table-hover p-5 text-light letras">
                             <tbody>
                             		<thead>
                                             <tr class="bg-dark text-white">

@@ -14,8 +14,11 @@
 </head>
 <body>
 	<div class="container">
+	 <div class=" text-light">
+    	<h1 th:text="${error}"></h1>
+    </div>
         <div class="row justify-content-center pt-5 mt-5 mr-1">
-            <div class="col-md-4 formulario">
+            <div class="col-md-4 formulario letras">
                 <form rol="form" [formGroup]="miFormulario" th:action="@{/app/index}"  th:object = ${usuario} method="post"> 
                     <div class="form-group pt-5">
                         <img class="avatar" th:src="@{/img/user.png}"  />
@@ -46,7 +49,8 @@
             </div>
         </div>
     </div>
-    <h1 th:text="${error}"></h1>
+   
+    
 
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

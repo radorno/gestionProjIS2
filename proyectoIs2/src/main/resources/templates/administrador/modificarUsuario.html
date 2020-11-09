@@ -27,46 +27,48 @@
 					<h3>MODIFICAR USUARIO</h3>
 					<p>Debe ingresar los datos del usuario a modificar para luego ser guardado en la base de datos</p>
 				</div>
-				<form class="formulario mt-5" th:action="@{/app/administrativo/modificarUsuario}" th:object = ${usuario} method="post">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>Nombres: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese Nombre" class="form-control text-light" type="text" th:field= "*{nombre}" name="nombre"maxlength="20"/> </p> 
-							<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"  ></p>
-						</div>
-						<div class="form-group col-md-6">
-							<p>Apellidos: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							<input placeholder="Ingrese Apellido" class="form-control text-light" type="text" th:field= "*{apellido}" name="apellido"maxlength="20"/> </p> 
-							<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:erros="*{apellido}"  ></p>
-						</div>
-					</div>	
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<p>UserCode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<input placeholder="Ingrese el Codigo" class="form-control text-light" type="text" th:field= "*{userCode}" name="code"maxlength="20"/> </p> 
-							<p class="form-text text-danger" th:if="${#fields.hasErrors('userCode')}" th:erros="*{userCode}"  ></p>
-						</div>
-						<div class="form-group col-md-6">
-							<p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<select  class="form-control text-light" name="Roles" th:field= "*{nombreRol}">
-								   <option value="">Seleccione una opcion</option>
-								   <option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
-								</select>
-							</p>	
+				<div class="letras">
+					<form class="formulario mt-5" th:action="@{/app/administrativo/modificarUsuario}" th:object = ${usuario} method="post">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>Nombres: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese Nombre" class="form-control text-light" type="text" th:field= "*{nombre}" name="nombre"maxlength="20"/> </p> 
+								<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:erros="*{nombre}"  ></p>
+							</div>
+							<div class="form-group col-md-6">
+								<p>Apellidos: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input placeholder="Ingrese Apellido" class="form-control text-light" type="text" th:field= "*{apellido}" name="apellido"maxlength="20"/> </p> 
+								<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:erros="*{apellido}"  ></p>
+							</div>
 						</div>	
-					</div>
-					<div class="form-group">
-						<p>Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<input placeholder="Ingrese Password" class="form-control text-light" type="password" th:field= "*{password}" name="pass"/> </p> 
-						<p class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:erros="*{password}"  ></p>
-					</div>
-					<div class="form-group">
-						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-secondary btn-block"type="submit" value="Guardar"> </p> 
-						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/verUsuarios'" value="Atras" />
-                                                <input type="hidden" th:field="*{id}"> 
-					</div>
-				</form>	   
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<p>UserCode: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input placeholder="Ingrese el Codigo" class="form-control text-light" type="text" th:field= "*{userCode}" name="code"maxlength="20"/> </p> 
+								<p class="form-text text-danger" th:if="${#fields.hasErrors('userCode')}" th:erros="*{userCode}"  ></p>
+							</div>
+							<div class="form-group col-md-6">
+								<p>Rol:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<select  class="form-control text-light" name="Roles" th:field= "*{nombreRol}">
+									   <option value="">Seleccione una opcion</option>
+									   <option th:each="Item: ${roles}" th:text="${Item.nombreRol}" th:value="${Item.nombreRol}" ></option>
+									</select>
+								</p>	
+							</div>	
+						</div>
+						<div class="form-group">
+							<p>Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input placeholder="Ingrese Password" class="form-control text-light" type="password" th:field= "*{password}" name="pass"/> </p> 
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:erros="*{password}"  ></p>
+						</div>
+						<div class="form-group">
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="btn btn-secondary btn-block letras"type="submit" value="Guardar"> </p> 
+							<input class="btn btn-block btn-primary letras" type="button" onclick="location.href='/app/administrativo/verUsuarios'" value="Atras" />
+	                                                <input type="hidden" th:field="*{id}"> 
+						</div>
+					</form>	
+				</div>  
 			</div>
         </div>
     </div>

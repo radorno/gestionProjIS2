@@ -27,7 +27,8 @@
 					<h3>CREAR USUARIO</h3>
 					<p>Debe ingresar los datos del usuario a registrar para luego ser guardado en la base de datos</p>
 				</div>
-				<form class="formulario mt-5" th:action="@{/app/administrativo/crearUsuarios}" th:object = ${usuario} method="post">
+				<div class="letras">
+					<form class="formulario mt-5" th:action="@{/app/administrativo/crearUsuarios}" th:object = ${usuario} method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<p>Nombres: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,13 +63,14 @@
 					</div>
 					<div class="form-group">
 						<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input class="btn btn-secondary btn-block"type="submit" value="Guardar"> </p> 
+						<input class="btn btn-secondary btn-block letras"type="submit" value="Guardar"> </p> 
 						<input type="hidden" th:field="*{id}"> 
 					</div>
 				   <div class="form-group">
-						<input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
+						<input class="btn btn-block btn-primary letras" type="button" onclick="location.href='/app/administrativo/gestionUsuario'" value="Atras" />
 					</div>
 				</form>	   
+				</div>
 			</div>
         </div>
     </div>

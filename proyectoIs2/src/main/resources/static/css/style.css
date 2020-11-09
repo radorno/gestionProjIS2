@@ -4,13 +4,99 @@ body {
     background-size: cover;
     background-attachment: fixed;
   }
+  
+    .navbar{
+    opacity: .9;
+    background:#BDC581;
+} 
+.navbar .nav-item{
+  color: #fff; 
+}
+.titulo{
+  color: #2C3A47;
+}
+.contenido-gral{
+  position: relative;
+  height:400px;
+}
+.titulo2{
+  font: bold 40px Helvetica, Sans-Serif;
+  text-align: center;
+  color: #1a77e2;
+  line-height:100px;
+
+}
+.botones-home{
+  bottom: 0; 
+  position: absolute;  
+  margin: 100px 450px;
+  
+}
+.botones-administrativo{
+  bottom: 100px; 
+  position: absolute;  
+  margin: 100px 450px;
+  
+}
+.boton{
+  display:block;
+  width: 400px;
+  height: 50px;
+  padding: 25px 0 40px 0;
+  margin: 50px 40px 10px 0px;
+  cursor: pointer;
+  background:transparent;
+  border: 2px solid #1a77e2;
+  border-radius: 10px;
+
+  font: bold 20px Helvetica, Sans-Serif;
+  text-align: center;
+  text-decoration: none;
+  /*color: #1a77e2;*/
+}
+
+.boton:hover{
+ /* color: #fff8f8;*/
+  background-color:#BDC5;
+  border: none;
+}
+.boton2{
+  display:block;
+  width: 400px;
+  height: 50px;
+  padding: 25px 0 40px 0;
+  margin: 50px 40px 10px 0px;
+  cursor: pointer;
+  background-color: #2C3A47;
+  border: 2px solid #444e58;
+  border-radius: 10px;
+
+  font: bold 20px Helvetica, Sans-Serif;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.boton2:hover{
+   
+   border: none; 
+
+ }
+  
+  
+  
 .formulario{
-  background:rgba(0, 0, 0, .1);
+  /*background:rgba(0, 0, 0, .1);*/
   padding: 20px;
   border-radius: 10px;
   box-shadow:0 0 30px rgba(0, -0, -0, -0.568);
   color: white;
+  background: #34495e;
 
+}
+.letras{
+  font-size: 20px;
+  
 }
 .form-control{
   background: rgba(0, -0,-0, .3);
@@ -41,7 +127,7 @@ body {
 .ingresar{
   background:#222A3F;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700!important;
   color: white;
   box-shadow:0 0 30px rgba(0, -0, -0, -0.568);
@@ -51,4 +137,8 @@ body {
 
 .ingresar:hover{
   color:white;
+}
+
+.color{
+  background-color:#34495e;
 }

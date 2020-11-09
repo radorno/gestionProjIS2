@@ -27,21 +27,23 @@
             <h3>BUSCAR LINEA BASE</h3>
             <p>Debe ingresar codigo de linea base que desea buscar.</p>
           </div>
-          <form class="formulario mt-5" action='#'  th:action="@{/app/gestion/buscar_linea_base}" th:number = ${lineaBase} method="post">
-            <div class="input-group pt-5 mb-3">
-              <div class="input-group-prepend">
-                <i class="fas fa-search input-group-text"></i>
-              </div>
-              <input placeholder="Ingrese Codigo de Linea Base" class="form-control text-light" type="text" th:field= "*{lineaBase.codigo}" name="codigo" size="18"/>
-            </div>
-            <div class="form-group pb-3">
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input class="btn btn-block btn-secondary" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input class="btn btn-block btn-primary" type="button" onclick="location.href='/app/gestion'" value="Atras" /> </p>
-            </div> 
-          </form>
+          <div class="letras">
+          	<form class="formulario mt-5" action='#'  th:action="@{/app/gestion/buscar_linea_base}" th:number = ${lineaBase} method="post">
+	            <div class="input-group pt-5 mb-3">
+	              <div class="input-group-prepend">
+	                <i class="fas fa-search input-group-text"></i>
+	              </div>
+	              <input placeholder="Ingrese Codigo de Linea Base" class="form-control text-light" type="text" th:field= "*{lineaBase.codigo}" name="codigo" size="18"/>
+	            </div>
+	            <div class="form-group pb-3">
+	              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	              <input class="btn btn-block btn-secondary letras" type="submit" value="Buscar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	              <input class="btn btn-block btn-primary letras" type="button" onclick="location.href='/app/gestion'" value="Atras" /> </p>
+	            </div> 
+          	</form>
+          </div>
         </div>
       </div>
     </div>
-       
 </body>
+</html>
