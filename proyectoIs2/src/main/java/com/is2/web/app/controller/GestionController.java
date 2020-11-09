@@ -95,6 +95,7 @@ public class GestionController {
               
                 lineaBaseDao.save(lineaBase);
                 codeLineaBase = lineaBaseDao.findLineaBase(lineaBase.getCodigo()).getId();
+                
                 models.put("tareas",tareaDao.findNoBloqueadas());
                 model.addAttribute("error", "LineaBase creada con exito");
                 return "gestion/seleccionar_tareas";
@@ -120,6 +121,7 @@ public class GestionController {
         
             newTarea = tareaDao.findTarea(tareas[i]);
             newTarea.setCodLineaBase(newLineaBase.getCodigo());
+            newTarea.setEstado("BLOQUEADO");
             tareaDao.save(newTarea);
         }
         

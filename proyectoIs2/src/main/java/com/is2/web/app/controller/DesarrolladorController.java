@@ -221,8 +221,15 @@ public class DesarrolladorController {
     public String eliminarTarea(@PathVariable("codigoTarea") String codigoTarea, Map<String, Object> model, Model models, HttpSession session) {
         if (session.getAttribute("user") != null) {
             Tarea tarea = tareaDao.findTarea(codigoTarea);
+            if(tarea.getCodLineaBase()!=null){
+               model.put("tareas", tareaDao.findAll());
+               model.put("error","error tarea pertenece a una linea base no puede ser eliminada");
+               return "desarrollador/verTareas"; 
+            }
             tareaDao.removeTarea(tarea);
             model.put("tareas", tareaDao.findAll());
+
+            
             return "desarrollador/verTareas";
         } else {
             Usuario usuarioSession = new Usuario();
